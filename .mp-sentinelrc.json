@@ -1,0 +1,23 @@
+{
+  "$schema": "./schemas/mp-sentinelrc.schema.json",
+  "techStack": "react, next.js, typescript, @gsap/react, @radix-ui/react-dialog, @radix-ui/react-separator, @radix-ui/react-slot, @radix-ui/react-tooltip",
+  "enableSkillsFetch": true,
+  "rules": [
+    "CRITICAL: All internal imports MUST use the '.js' extension for ESM compatibility.",
+    "CRITICAL: Node.js built-in modules MUST use the 'node:' prefix.",
+    "CRITICAL: All public functions and methods MUST have explicit return types.",
+    "PERFORMANCE: Independent tasks MUST use 'Promise.all' for parallel execution.",
+    "CLEAN CODE: Error handling MUST use type guards instead of casting to 'any'.",
+    "REACT: useEffect/useMemo/useCallback dependency arrays MUST list every value read inside."
+  ],
+  "maxConcurrency": 5,
+  "ai": {
+    "maxFiles": 15,
+    "maxDiffLines": 1200,
+    "maxCharsPerFile": 12000,
+    "modelTier": "balanced"
+  },
+  "review": {
+    "severityThreshold": "WARNING"
+  }
+}

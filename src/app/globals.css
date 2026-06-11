@@ -1,0 +1,104 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* ——— Design tokens, translated from DESIGN.md (Cohere-derived system) ——— */
+@theme inline {
+  /* Brand & accent */
+  --color-canvas: #ffffff;
+  --color-ink: #212121;
+  --color-primary: #17171c;
+  --color-deep-green: #003c33;
+  --color-navy: #071829;
+  --color-action: #1863dc;
+  --color-coral: #ff7759;
+  --color-coral-soft: #ffad9b;
+
+  /* Surfaces */
+  --color-stone-soft: #eeece7;
+  --color-wash-green: #edfce9;
+  --color-wash-blue: #f1f5ff;
+  --color-card-line: #f2f2f2;
+
+  /* Text & rules */
+  --color-hairline: #d9d9dd;
+  --color-line-light: #e5e7eb;
+  --color-muted-slate: #93939f;
+  --color-slate-mid: #75758a;
+  --color-focus: #4c6ee6;
+
+  /* Type */
+  --font-display: "Space Grotesk Variable", "Inter Variable", ui-sans-serif,
+    system-ui, sans-serif;
+  --font-body: "Inter Variable", Arial, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SF Mono", Menlo,
+    monospace;
+
+  /* Radius scale (xs→pill per DESIGN.md) */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 30px;
+  --radius-pill: 32px;
+}
+
+@utility container-site {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: clamp(1.25rem, 4vw, 3rem);
+}
+
+/* Uppercase technical label (CohereMono spirit) */
+@utility mono-label {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Lenis drives scrolling when active — avoid double smoothing */
+  html.lenis {
+    scroll-behavior: auto;
+  }
+
+  /* Keep anchored sections clear of the sticky nav */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
+  body {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-coral-soft) 45%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
