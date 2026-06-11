@@ -1,20 +1,19 @@
 /**
  * SiteContent — single source of truth for everything rendered on the page.
- * Seed data for the MVP; replace values here without touching components.
+ * Personal portfolio content for Nguyen Nhat Minh.
  */
 
 export type NavLink = { label: string; href: string };
 
-export type Stat = { value: string; label: string };
-
-export type CaseStudy = {
+export type Project = {
   slug: string;
   chip: string;
   name: string;
   headline: string;
   description: string;
-  outcomes: string[];
+  highlights: string[];
   stack: string[];
+  repo: string;
   visual: "console" | "stone";
 };
 
@@ -25,269 +24,184 @@ export type Capability = {
   icon: "scope" | "stack" | "loop";
 };
 
-export type ProcessStep = {
-  phase: string;
-  window: string;
-  body: string;
-};
-
-export type ProjectCard = {
-  name: string;
-  summary: string;
-  points: string[];
-  href?: string;
-};
-
-export type Testimonial = {
-  quote: string;
-  name: string;
-  role: string;
-  chip: string;
-};
+export type Skill = { name: string; icon: string };
 
 export type Social = { label: string; href: string };
 
 export const site = {
   profile: {
-    name: "Minh",
-    studio: "MVP Studio",
-    wordmark: "mvp·studio",
-    role: "Product engineer & studio of one",
+    name: "Nguyen Nhat Minh",
+    studio: "Nguyen Nhat Minh",
+    wordmark: "nhatminh·dev",
+    role: "Full-stack & product engineer",
     email: "mipuenglish@gmail.com",
-    location: "Ho Chi Minh City · working worldwide",
-    availability: "Booking discovery sprints for July 2026",
+    github: "https://github.com/peter-minhnn",
+    location: "Ho Chi Minh City, Vietnam",
+    availability: "Open to projects and collaborations",
   },
 
   announcement: {
-    text: "Now booking discovery sprints for July 2026 — one slot left.",
-    linkLabel: "Start a project",
+    text: "Open to new projects and collaborations — say hello.",
+    linkLabel: "Contact me",
   },
 
   nav: [
-    { label: "Work", href: "#work" },
-    { label: "Capabilities", href: "#capabilities" },
-    { label: "Process", href: "#process" },
     { label: "Projects", href: "#projects" },
+    { label: "About", href: "#about" },
+    { label: "Skills", href: "#skills" },
+    { label: "CV", href: "#cv" },
     { label: "Contact", href: "#contact" },
   ] satisfies NavLink[],
 
   hero: {
-    eyebrow: "MVP Studio — Product Engineering",
-    title: "From idea to shipped product in weeks.",
-    lead: "I design, build, and launch production-ready MVPs for founders and small teams — scoped tight, built on a modern web stack, and in front of real users from day one.",
-    primaryCta: { label: "Start a project" },
-    secondaryCta: { label: "See selected work", href: "#work" },
+    eyebrow: "Nguyen Nhat Minh — Full-stack & Product Engineer",
+    title: "I build polished web products, end to end.",
+    lead: "I'm a full-stack engineer in Ho Chi Minh City. I design and ship production-ready web apps, English-learning products, and developer tooling — from data model and API to interface and motion design.",
+    primaryCta: { label: "View projects", href: "#projects" },
+    cvCta: { label: "Preview CV" },
+    contactCta: { label: "Contact me" },
     console: {
-      title: "mvp-english · production",
+      title: "mvp-listening · production",
       status: "Build passing",
-      deploy: "Deploy 47 — checkout flow",
-      integrations: ["Next.js", "Postgres", "Stripe"],
+      deploy: "Deploy — listening test player",
+      integrations: ["Next.js", "Supabase", "Audio"],
     },
     sideCard: {
-      chip: "This quarter",
-      caption: "Three products scoped, built, and launched with this exact system.",
+      chip: "Currently",
+      caption:
+        "Building IELTS practice tools and an AI code-review CLI — two products, one engineering system.",
     },
   },
 
-  trust: {
-    heading: "Trusted by founders and product teams",
-    logos: [
-      "Northbeam Labs",
-      "Quartz & Co",
-      "Fieldnote",
-      "Halcyon Health",
-      "Brightline",
-      "Arcadia",
-    ],
-    stats: [
-      { value: "14", label: "MVPs shipped to production" },
-      { value: "3–6 wks", label: "typical idea-to-launch window" },
-      { value: "92%", label: "of clients come back for v2" },
-      { value: "$4.2M", label: "raised on the back of client launches" },
-    ] satisfies Stat[],
-  },
-
-  work: {
-    eyebrow: "Selected work",
-    heading: "Small scopes, real launches.",
-    cases: [
-      {
-        slug: "mvp-english",
-        chip: "Edtech",
-        name: "MVP English",
-        headline: "An AI speaking coach that took a tutoring business online",
-        description:
-          "A learning platform with live lesson rooms, AI pronunciation feedback, and subscription billing — shipped in five weeks from a one-page brief.",
-        outcomes: [
-          "5 weeks from kickoff to paying users",
-          "1,200+ active learners in month one",
-          "4.9★ average lesson rating",
-        ],
-        stack: ["Next.js", "Supabase", "Stripe", "WebRTC"],
-        visual: "console",
-      },
-      {
-        slug: "fieldnote",
-        chip: "B2B SaaS",
-        name: "Fieldnote",
-        headline: "Inspection reports that write themselves",
-        description:
-          "An offline-first field app that turns site photos and voice notes into client-ready PDF reports before the inspector reaches the car.",
-        outcomes: [
-          "3 weeks to a pilot with 40 inspectors",
-          "70% less time spent per report",
-          "Seed round closed on pilot data",
-        ],
-        stack: ["React Native", "tRPC", "Postgres"],
-        visual: "stone",
-      },
-    ] satisfies CaseStudy[],
-  },
-
-  capabilities: {
-    eyebrow: "Capabilities",
+  about: {
+    eyebrow: "About",
     heading: "One pair of hands, end to end.",
-    lead: "Everything between a napkin sketch and a product with users — without the agency overhead or the hand-off losses.",
+    lead: "Everything between an idea and a product with users: interface, API, database, integrations, and the launch itself.",
     items: [
       {
-        title: "Product strategy & scoping",
-        body: "A one-week discovery sprint turns your idea into a build plan: user flows, data model, and a fixed scope we both sign before any code.",
-        link: { label: "How scoping works", href: "#process" },
+        title: "Product engineering",
+        body: "I take products from a one-page brief to production: user flows, data model, interface, and deployment — with decisions that stay coherent because one person makes them.",
+        link: { label: "See the projects", href: "#projects" },
         icon: "scope",
       },
       {
-        title: "Design & full-stack build",
-        body: "Interface, API, database, auth, and payments from one person — decisions stay coherent from Figma frame to production deploy.",
+        title: "Developer & learning tools",
+        body: "I build tools people use every day: an IELTS Listening practice platform and a code-review CLI with architecture guardrails — practical software with careful edges.",
         icon: "stack",
       },
       {
-        title: "Launch & iteration",
-        body: "Analytics, error tracking, and a weekly iteration loop after launch, so the MVP keeps earning its next feature with evidence.",
+        title: "Polished web experiences",
+        body: "Motion-rich, accessible interfaces with GSAP and React Three Fiber that stay fast: transform-only animations, reduced-motion fallbacks, no scroll jank.",
         icon: "loop",
       },
     ] satisfies Capability[],
   },
 
-  process: {
-    eyebrow: "Process",
-    heading: "Four phases. Weekly demos. No slide decks.",
-    steps: [
-      {
-        phase: "Discover",
-        window: "Week 0–1",
-        body: "We define the one job your product must do, who it's for, and the smallest version that proves it — then fix the scope in writing.",
-      },
-      {
-        phase: "Design",
-        window: "Week 1–2",
-        body: "Flows become wireframes, wireframes become a clickable interface in your brand. You react to screens, not specs.",
-      },
-      {
-        phase: "Build",
-        window: "Week 2–5",
-        body: "Weekly releases on a production stack from day one. You watch the product grow in your own browser, not in a deck.",
-      },
-      {
-        phase: "Launch",
-        window: "Week 5+",
-        body: "Real users, real metrics, and a prioritized v2 backlog based on what people actually do inside the product.",
-      },
-    ] satisfies ProcessStep[],
-  },
-
   projects: {
-    eyebrow: "More builds",
-    heading: "Smaller projects, same system.",
+    eyebrow: "Featured projects",
+    heading: "Real products, built end to end.",
     items: [
       {
-        name: "Quartz CRM",
-        summary: "Pipeline tool for a twelve-person agency",
-        points: [
-          "Kanban pipeline with email sync",
-          "Built and adopted in four weeks",
-          "Now their system of record",
+        slug: "mvp-listening",
+        chip: "Edtech",
+        name: "mvp-listening",
+        headline: "An IELTS Listening practice app with AI-powered test import",
+        description:
+          "A full practice platform: import real tests from Excel, PDFs, or photos, sit them with an audio test player, then review answers and grow a personal vocabulary list.",
+        highlights: [
+          "Test import from Excel, PDF, and photos",
+          "Audio test-taking with timed sections and review flow",
+          "Vocabulary workflow built from mistakes",
         ],
+        stack: ["Next.js", "TypeScript", "Supabase", "AI"],
+        repo: "https://github.com/peter-minhnn/mvp-listening",
+        visual: "console",
       },
       {
-        name: "Halcyon Intake",
-        summary: "Privacy-first patient onboarding",
-        points: [
-          "Dynamic medical intake forms",
-          "E-signatures and reminders",
-          "Cut intake calls by half",
+        slug: "mp-sentinel",
+        chip: "Dev tools",
+        name: "mp-sentinel",
+        headline: "An AI-powered code review CLI with architecture guardrails",
+        description:
+          "A TypeScript CLI that reviews codebases with multiple AI providers, enforces architecture and clean-code rules, and keeps every run safe with dry-run and security guardrails.",
+        highlights: [
+          "Architecture checks and clean-code rule packs",
+          "Multi-provider AI review pipeline",
+          "Dry-run mode and security guardrails by default",
         ],
+        stack: ["TypeScript", "Node.js", "CLI", "AI"],
+        repo: "https://github.com/peter-minhnn/mp-sentinel",
+        visual: "stone",
       },
-      {
-        name: "Arcadia Menus",
-        summary: "QR menus for a restaurant group",
-        points: [
-          "Live menu editing, no reprints",
-          "Seven venues on one dashboard",
-          "Launched in two weeks",
-        ],
-      },
-    ] satisfies ProjectCard[],
+    ] satisfies Project[],
   },
 
-  testimonials: {
-    eyebrow: "What clients say",
+  skills: {
+    eyebrow: "Skills",
+    heading: "The stack I reach for.",
+    lead: "Press a key — these are the tools I work with daily.",
     items: [
-      {
-        quote:
-          "Minh scoped in a week what our last agency couldn't in a quarter. The MVP shipped early, and our first cohort onboarded the same day.",
-        name: "Lan Pham",
-        role: "Founder, MVP English",
-        chip: "Edtech",
-      },
-      {
-        quote:
-          "It felt like hiring a CTO, a designer, and a dev team in one person. Weekly demos kept the board calm and the roadmap honest.",
-        name: "Daniel Reyes",
-        role: "COO, Fieldnote",
-        chip: "B2B SaaS",
-      },
-    ] satisfies Testimonial[],
+      { name: "TypeScript", icon: "/logos/typescript.svg" },
+      { name: "JavaScript", icon: "/logos/javascript.svg" },
+      { name: "React", icon: "/logos/react.svg" },
+      { name: "Next.js", icon: "/logos/nextjs.svg" },
+      { name: "Node.js", icon: "/logos/nodejs.svg" },
+      { name: "Supabase", icon: "/logos/supabase.svg" },
+      { name: "PostgreSQL", icon: "/logos/postgresql.svg" },
+      { name: "Tailwind CSS", icon: "/logos/tailwindcss.svg" },
+      { name: "Three.js", icon: "/logos/threejs.svg" },
+      { name: "Git", icon: "/logos/git.svg" },
+      { name: "Docker", icon: "/logos/docker.svg" },
+    ] satisfies Skill[],
+  },
+
+  cv: {
+    eyebrow: "Curriculum vitae",
+    heading: "The full story, on one PDF.",
+    body: "Preview my CV right here, download a copy, or open it in a new tab — experience, stack, and education in one place.",
+    file: "/files/NGUYENNHATMINH_CV.pdf",
+    fileName: "NGUYENNHATMINH_CV.pdf",
+    previewLabel: "Preview CV",
+    downloadLabel: "Download CV",
+    newTabLabel: "Open in new tab",
   },
 
   contact: {
-    label: "Ideas move fast",
-    heading: "Have an idea that needs to exist? Let's scope your MVP.",
-    body: "Tell me what you're building and who it's for. You'll get a reply within 48 hours with first questions and a discovery-sprint slot.",
-    cta: { label: "Start a project" },
+    label: "Let's talk",
+    heading: "Have a product or tool that needs building?",
+    body: "Tell me what you're working on. Email is the fastest way to reach me — or look around my GitHub first.",
+    cta: { label: "Email me" },
   },
 
-  // TODO: replace with your real profile URLs.
   socials: [
-    { label: "GitHub", href: "https://github.com" },
-    { label: "LinkedIn", href: "https://linkedin.com" },
-    { label: "X / Twitter", href: "https://x.com" },
+    { label: "Email", href: "mailto:mipuenglish@gmail.com" },
+    { label: "GitHub", href: "https://github.com/peter-minhnn" },
   ] satisfies Social[],
 
   footer: {
-    note: "Independent product engineering studio. One project at a time, scoped in weeks, shipped to production.",
+    note: "Full-stack & product engineer building AI tooling, English-learning products, and polished web MVPs.",
     columns: [
       {
         title: "Site",
         links: [
-          { label: "Selected work", href: "#work" },
-          { label: "Capabilities", href: "#capabilities" },
-          { label: "Process", href: "#process" },
-          { label: "More builds", href: "#projects" },
+          { label: "Projects", href: "#projects" },
+          { label: "About", href: "#about" },
+          { label: "CV", href: "#cv" },
+          { label: "Contact", href: "#contact" },
         ],
       },
       {
         title: "Connect",
         links: [
           { label: "Email", href: "mailto:mipuenglish@gmail.com" },
-          { label: "GitHub", href: "https://github.com" },
-          { label: "LinkedIn", href: "https://linkedin.com" },
-          { label: "X / Twitter", href: "https://x.com" },
+          { label: "GitHub", href: "https://github.com/peter-minhnn" },
         ],
       },
     ],
-    legal: "© 2026 MVP Studio. Built with Next.js, React Three Fiber, and GSAP.",
+    legal:
+      "© 2026 Nguyen Nhat Minh. Built with Next.js, React Three Fiber, and GSAP.",
   },
 } as const;
 
-export const mailto = (subject = "New project inquiry") =>
+export const mailto = (subject = "Hello from your portfolio") =>
   `mailto:${site.profile.email}?subject=${encodeURIComponent(subject)}`;

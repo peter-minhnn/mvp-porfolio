@@ -25,7 +25,7 @@ export function SiteFooter() {
               </a>
             </TooltipTrigger>
             <TooltipContent className="bg-white text-primary">
-              Replies within 48 hours
+              The fastest way to reach me
             </TooltipContent>
           </Tooltip>
         </div>

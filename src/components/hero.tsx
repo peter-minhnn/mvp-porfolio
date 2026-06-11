@@ -7,6 +7,7 @@ import { ArrowRightIcon } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { CvPreviewDialog } from "@/components/cv-dialog";
 import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
 import { mailto, site } from "@/content/site";
 
@@ -155,15 +156,18 @@ export function Hero() {
             className="mt-9 flex flex-wrap items-center justify-center gap-6"
           >
             <Button asChild size="lg">
-              <a href={mailto()}>
+              <a href={site.hero.primaryCta.href}>
                 {site.hero.primaryCta.label}
                 <ArrowRightIcon className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
               </a>
             </Button>
+            <CvPreviewDialog>
+              <Button variant="outline" size="lg">
+                {site.hero.cvCta.label}
+              </Button>
+            </CvPreviewDialog>
             <Button asChild variant="link" size="none" className="text-ink">
-              <a href={site.hero.secondaryCta.href}>
-                {site.hero.secondaryCta.label}
-              </a>
+              <a href={mailto()}>{site.hero.contactCta.label}</a>
             </Button>
           </div>
         </div>

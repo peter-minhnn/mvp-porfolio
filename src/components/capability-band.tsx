@@ -36,6 +36,7 @@ const icons: Record<Capability["icon"], ReactNode> = {
  * Dark feature band per DESIGN.md `dark-feature-band`: deep green full-width
  * section, white text, translucent cards, thin-line geometric icons. The band
  * un-rounds as it enters (clip-path scrub) — a restrained "curtain" moment.
+ * Now renders the personal "About" content.
  */
 export function CapabilityBand() {
   const ref = useRef<HTMLElement>(null);
@@ -65,26 +66,26 @@ export function CapabilityBand() {
   );
 
   return (
-    <section ref={ref} id="capabilities" aria-label="Capabilities">
+    <section ref={ref} id="about" aria-label="About">
       <div data-band className="bg-deep-green text-white">
         <div className="container-site py-24 md:py-32">
           <div className="max-w-2xl">
             <p data-reveal className="mono-label text-xs text-white/55">
-              {site.capabilities.eyebrow}
+              {site.about.eyebrow}
             </p>
             <h2
               data-reveal
               className="font-display mt-4 text-[clamp(2.25rem,4.5vw,3.75rem)] leading-[1.05] tracking-[-0.02em] text-white"
             >
-              {site.capabilities.heading}
+              {site.about.heading}
             </h2>
             <p data-reveal className="mt-5 max-w-xl text-lg leading-relaxed text-white/70">
-              {site.capabilities.lead}
+              {site.about.lead}
             </p>
           </div>
 
           <div className="mt-16 grid gap-5 md:grid-cols-3">
-            {site.capabilities.items.map((cap, i) => (
+            {site.about.items.map((cap, i) => (
               <article
                 key={cap.title}
                 data-reveal

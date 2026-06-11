@@ -6,6 +6,24 @@ import { Float, RoundedBox } from "@react-three/drei";
 import * as THREE from "three";
 
 /**
+ * three r183+ deprecated THREE.Clock, but @react-three/fiber (as of 9.6.1)
+ * still instantiates one internally, which logs a deprecation warning we
+ * can't act on. Filter exactly that message via three's official console
+ * hook and forward everything else untouched.
+ * TODO: remove once R3F migrates to THREE.Timer.
+ */
+THREE.setConsoleFunction((type, message, ...params) => {
+  if (
+    type === "warn" &&
+    typeof message === "string" &&
+    message.includes("THREE.Clock: This module has been deprecated")
+  ) {
+    return;
+  }
+  console[type](message, ...params);
+});
+
+/**
  * Procedural "build console": a product slab being assembled from floating
  * panels. No textures, no network assets — geometry and light only.
  *

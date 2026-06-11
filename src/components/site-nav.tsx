@@ -114,7 +114,7 @@ export function SiteNav() {
               className="hidden md:block"
             >
               <Button asChild size="sm">
-                <a href={mailto()}>{site.hero.primaryCta.label}</a>
+                <a href={mailto()}>{site.hero.contactCta.label}</a>
               </Button>
             </motion.div>
 
@@ -160,7 +160,7 @@ export function SiteNav() {
                     </p>
                     <SheetClose asChild>
                       <Button asChild size="lg" className="w-full">
-                        <a href={mailto()}>{site.hero.primaryCta.label}</a>
+                        <a href={mailto()}>{site.hero.contactCta.label}</a>
                       </Button>
                     </SheetClose>
                   </div>
