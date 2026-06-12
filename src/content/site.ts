@@ -34,7 +34,7 @@ export const site = {
     studio: "Nguyen Nhat Minh",
     wordmark: "nhatminh·dev",
     role: "Full-stack & product engineer",
-    email: "mipuenglish@gmail.com",
+    email: "nnminh742@gmail.com",
     github: "https://github.com/peter-minhnn",
     location: "Ho Chi Minh City, Vietnam",
     availability: "Open to projects and collaborations",
@@ -181,7 +181,7 @@ export const site = {
   },
 
   socials: [
-    { label: "Email", href: "mailto:mipuenglish@gmail.com" },
+    { label: "Email", href: "mailto:nnminh742@gmail.com" },
     { label: "GitHub", href: "https://github.com/peter-minhnn" },
   ] satisfies Social[],
 
@@ -200,7 +200,7 @@ export const site = {
       {
         title: "Connect",
         links: [
-          { label: "Email", href: "mailto:mipuenglish@gmail.com" },
+          { label: "Email", href: "mailto:nnminh742@gmail.com" },
           { label: "GitHub", href: "https://github.com/peter-minhnn" },
         ],
       },
