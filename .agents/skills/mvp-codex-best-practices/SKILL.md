@@ -152,8 +152,8 @@ These rules are enforced by the agent when writing or reviewing code:
 Hard limit: **500 lines** per file.
 
 - **Current codebase P50:** 29 lines
-- **Current codebase P95:** 189 lines
-- **Current max file:** 249 lines
+- **Current codebase P95:** 172 lines
+- **Current max file:** 222 lines
 
 No files exceed the 500-line limit. Keep it this way.
 

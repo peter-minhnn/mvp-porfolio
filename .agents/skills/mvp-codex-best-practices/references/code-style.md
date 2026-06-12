@@ -15,7 +15,7 @@ Auto-detected code style from the codebase. These rules should be followed by th
 ## Semicolons
 
 **Usage:** No semicolons
-(semicolon ratio: 16%)
+(semicolon ratio: 17%)
 
 ## Trailing Newlines
 
@@ -24,8 +24,8 @@ Auto-detected code style from the codebase. These rules should be followed by th
 ## File Size Distribution
 
 - **P50 (median):** 29 lines
-- **P95:** 189 lines
-- **Max:** 249 lines
+- **P95:** 172 lines
+- **Max:** 222 lines
 
 ## Detected Formatter / Linter Configs
 
