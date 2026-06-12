@@ -32,7 +32,7 @@ export function SmoothScroll() {
     // Smooth-scroll in-page anchors through Lenis.
     const onClick = (event: MouseEvent) => {
       const anchor = (event.target as HTMLElement).closest?.(
-        'a[href^="#"]'
+        'a[href^="#"]',
       ) as HTMLAnchorElement | null;
       if (!anchor) return;
       const id = anchor.getAttribute("href");

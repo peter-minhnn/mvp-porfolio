@@ -32,11 +32,11 @@ export function ContactCta() {
               end: "top 35%",
               scrub: 0.4,
             },
-          }
+          },
         );
       });
     },
-    { scope: ref }
+    { scope: ref },
   );
 
   return (
@@ -52,17 +52,11 @@ export function ContactCta() {
           >
             {site.contact.heading}
           </h2>
-          <p
-            data-reveal
-            className="mt-6 max-w-xl text-lg leading-relaxed text-white/70"
-          >
+          <p data-reveal className="mt-6 max-w-xl text-lg leading-relaxed text-white/70">
             {site.contact.body}
           </p>
 
-          <div
-            data-reveal
-            className="mt-10 flex flex-wrap items-center gap-6"
-          >
+          <div data-reveal className="mt-10 flex flex-wrap items-center gap-6">
             <Button asChild variant="inverted" size="lg">
               <a href={mailto()}>
                 {site.contact.cta.label}
@@ -70,9 +64,7 @@ export function ContactCta() {
               </a>
             </Button>
             <Button asChild variant="link" size="none" className="text-white/85">
-              <a href={`mailto:${site.profile.email}`}>
-                or write to {site.profile.email}
-              </a>
+              <a href={`mailto:${site.profile.email}`}>or write to {site.profile.email}</a>
             </Button>
           </div>
 

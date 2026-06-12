@@ -1,4 +1,4 @@
-<!-- @mp-sentinel-generated generatorVersion=3.0.0 sourceIndexSchema=1.5 sourceIndexHash=478518df360ea549 agent=codex projectName=mvp generationConfigHash=a470c6e5696b89bd -->
+<!-- @mp-sentinel-generated generatorVersion=3.0.0 sourceIndexSchema=1.5 sourceIndexHash=8f3b09313014889d agent=codex projectName=mvp generationConfigHash=a470c6e5696b89bd -->
 ## Project Profile: react-next
 
 ### Commands
@@ -7,8 +7,14 @@ Package manager: `pnpm`
 
 ```sh
 pnpm run build  # next build
+pnpm run check  # biome check --write
+pnpm run check:ci  # biome ci
 pnpm run dev  # next dev
-pnpm run lint  # eslint
+pnpm run format  # biome format --write
+pnpm run format:check  # biome format
+pnpm run lint  # biome lint --write
+pnpm run lint:check  # biome lint
+pnpm run mp-sentinel  # npx mp-sentinel create-skills --force
 pnpm run start  # next start
 ```
 
@@ -16,8 +22,12 @@ pnpm run start  # next start
 
 Modules and their responsibilities:
 
+- `src/components/` - 11 source file(s)
+- `src/components/ui/` - 6 source file(s)
 - `(root)/` - 3 source file(s)
+- `src/lib/` - 3 source file(s)
 - `src/app/` - 2 source file(s)
+- `src/content/` - 1 source file(s)
 
 ### Import Conventions
 

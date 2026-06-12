@@ -1,4 +1,4 @@
-<!-- @mp-sentinel-generated generatorVersion=3.0.0 sourceIndexSchema=1.5 sourceIndexHash=68184043175e237f agent=claude projectName=mvp generationConfigHash=a470c6e5696b89bd -->
+<!-- @mp-sentinel-generated generatorVersion=3.0.0 sourceIndexSchema=1.5 sourceIndexHash=8f3b09313014889d agent=claude projectName=mvp generationConfigHash=a470c6e5696b89bd -->
 ## Language Patterns
 
 Auto-detected language patterns and framework rules for this codebase. Agents should respect these when writing or reviewing code.
@@ -7,9 +7,9 @@ Auto-detected language patterns and framework rules for this codebase. Agents sh
 
 | Language | File Count | Share |
 |---|---|---|
-| javascript | 2 | 40.0% |
-| tsx | 2 | 40.0% |
-| typescript | 1 | 20.0% |
+| tsx | 19 | 73.1% |
+| typescript | 5 | 19.2% |
+| javascript | 2 | 7.7% |
 
 ## Framework & Language Rules
 

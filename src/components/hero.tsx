@@ -117,26 +117,18 @@ export function Hero() {
         tl.to("[data-hero-copy]", { y: -56, opacity: 0.3, ease: "none" }, 0).to(
           "[data-hero-media]",
           { y: -18, ease: "none" },
-          0
+          0,
         );
       });
     },
-    { scope: sectionRef }
+    { scope: sectionRef },
   );
 
   return (
-    <section
-      ref={sectionRef}
-      id="top"
-      aria-label="Intro"
-      className="relative bg-canvas"
-    >
+    <section ref={sectionRef} id="top" aria-label="Intro" className="relative bg-canvas">
       <div className="container-site flex flex-col items-center pt-16 pb-14 text-center md:pt-24">
         <div data-hero-copy className="flex flex-col items-center">
-          <p
-            data-hero-reveal
-            className="mono-label text-xs text-slate-mid"
-          >
+          <p data-hero-reveal className="mono-label text-xs text-slate-mid">
             {site.hero.eyebrow}
           </p>
           <h1
@@ -145,16 +137,10 @@ export function Hero() {
           >
             {site.hero.title}
           </h1>
-          <p
-            data-hero-reveal
-            className="mt-6 max-w-xl text-lg leading-[1.45] text-ink/80"
-          >
+          <p data-hero-reveal className="mt-6 max-w-xl text-lg leading-[1.45] text-ink/80">
             {site.hero.lead}
           </p>
-          <div
-            data-hero-reveal
-            className="mt-9 flex flex-wrap items-center justify-center gap-6"
-          >
+          <div data-hero-reveal className="mt-9 flex flex-wrap items-center justify-center gap-6">
             <Button asChild size="lg">
               <a href={site.hero.primaryCta.href}>
                 {site.hero.primaryCta.label}
@@ -173,10 +159,7 @@ export function Hero() {
         </div>
 
         {/* Two-card media composition */}
-        <div
-          data-hero-media
-          className="mt-16 grid w-full gap-4 md:mt-20 md:grid-cols-[1.6fr_1fr]"
-        >
+        <div data-hero-media className="mt-16 grid w-full gap-4 md:mt-20 md:grid-cols-[1.6fr_1fr]">
           <div className="relative aspect-4/3 overflow-hidden rounded-lg bg-[radial-gradient(120%_120%_at_20%_0%,#0d352d_0%,#071f1a_55%,#06130f_100%)] sm:aspect-16/10">
             <HeroCanvas progress={progressRef} reduced={reduced} />
             <ConsoleCard />

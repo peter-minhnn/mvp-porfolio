@@ -9,14 +9,28 @@ import { useReveal } from "@/lib/use-reveal";
 
 const icons: Record<Capability["icon"], ReactNode> = {
   scope: (
-    <svg viewBox="0 0 48 48" className="size-10" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden>
+    <svg
+      viewBox="0 0 48 48"
+      className="size-10"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      aria-hidden
+    >
       <circle cx="24" cy="24" r="16" />
       <path d="M24 4v8M24 36v8M4 24h8M36 24h8" />
       <circle cx="24" cy="24" r="3" />
     </svg>
   ),
   stack: (
-    <svg viewBox="0 0 48 48" className="size-10" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden>
+    <svg
+      viewBox="0 0 48 48"
+      className="size-10"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      aria-hidden
+    >
       <rect x="10" y="8" width="28" height="9" rx="2" />
       <rect x="10" y="20" width="28" height="9" rx="2" />
       <rect x="10" y="32" width="28" height="9" rx="2" />
@@ -24,7 +38,14 @@ const icons: Record<Capability["icon"], ReactNode> = {
     </svg>
   ),
   loop: (
-    <svg viewBox="0 0 48 48" className="size-10" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden>
+    <svg
+      viewBox="0 0 48 48"
+      className="size-10"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      aria-hidden
+    >
       <path d="M38 24a14 14 0 1 1-4.1-9.9" />
       <path d="M38 8v8h-8" />
       <circle cx="24" cy="24" r="3" strokeDasharray="2 3" />
@@ -58,11 +79,11 @@ export function CapabilityBand() {
               end: "top 30%",
               scrub: 0.4,
             },
-          }
+          },
         );
       });
     },
-    { scope: ref }
+    { scope: ref },
   );
 
   return (
@@ -96,9 +117,7 @@ export function CapabilityBand() {
                 <h3 className="font-display mt-8 text-2xl leading-snug tracking-[-0.01em]">
                   {cap.title}
                 </h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-white/70">
-                  {cap.body}
-                </p>
+                <p className="mt-3 text-[15px] leading-relaxed text-white/70">{cap.body}</p>
                 {cap.link && (
                   <Button
                     asChild

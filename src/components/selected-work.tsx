@@ -19,9 +19,7 @@ function ConsoleMock({ name }: { name: string }) {
         className="w-full max-w-105 rounded-md border border-white/10 bg-primary p-5 text-white"
       >
         <div className="flex items-center justify-between">
-          <span className="mono-label text-[10px] text-white/55">
-            {name} · test player
-          </span>
+          <span className="mono-label text-[10px] text-white/55">{name} · test player</span>
           <div className="flex gap-1.5" aria-hidden>
             <span className="size-1.5 rounded-full bg-white/25" />
             <span className="size-1.5 rounded-full bg-white/25" />
@@ -104,7 +102,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
     <article
       className={cn(
         "grid items-center gap-8 md:grid-cols-2 md:gap-14",
-        index % 2 === 1 && "md:[&>*:first-child]:order-2"
+        index % 2 === 1 && "md:[&>*:first-child]:order-2",
       )}
     >
       {/* Media — CSS 3D layer tilted by GSAP on scroll */}
@@ -114,18 +112,11 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
           "relative aspect-16/11 overflow-hidden rounded-lg [perspective:1200px]",
           project.visual === "console"
             ? "bg-deep-green bg-[radial-gradient(120%_120%_at_20%_0%,#0d352d_0%,#071f1a_55%,#06130f_100%)]"
-            : "bg-stone-soft"
+            : "bg-stone-soft",
         )}
       >
-        <div
-          data-parallax
-          className="absolute inset-[-6%] [transform-style:preserve-3d]"
-        >
-          {project.visual === "console" ? (
-            <ConsoleMock name={project.name} />
-          ) : (
-            <StoneMock />
-          )}
+        <div data-parallax className="absolute inset-[-6%] [transform-style:preserve-3d]">
+          {project.visual === "console" ? <ConsoleMock name={project.name} /> : <StoneMock />}
         </div>
       </div>
 
@@ -133,9 +124,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
       <div className="flex flex-col items-start">
         <div data-reveal className="flex items-center gap-3">
           <Badge variant="coral">{project.chip}</Badge>
-          <span className="mono-label text-[11px] text-slate-mid">
-            {project.name}
-          </span>
+          <span className="mono-label text-[11px] text-slate-mid">{project.name}</span>
         </div>
         <h3
           data-reveal
@@ -169,13 +158,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
           ))}
         </div>
 
-        <Button
-          data-reveal
-          asChild
-          variant="link"
-          size="none"
-          className="mt-8 text-ink"
-        >
+        <Button data-reveal asChild variant="link" size="none" className="mt-8 text-ink">
           <a href={project.repo} target="_blank" rel="noreferrer">
             View {project.name} on GitHub
             <ArrowUpRightIcon className="size-4" />
@@ -204,23 +187,19 @@ export function SelectedWork() {
             end: "bottom top",
             scrub: 0.5,
           } as const;
-          gsap.fromTo(
-            el,
-            { yPercent: -4 },
-            { yPercent: 4, ease: "none", scrollTrigger: trigger }
-          );
+          gsap.fromTo(el, { yPercent: -4 }, { yPercent: 4, ease: "none", scrollTrigger: trigger });
           const layer = el.querySelector<HTMLElement>("[data-tilt-layer]");
           if (layer) {
             gsap.fromTo(
               layer,
               { rotateX: 7, rotateY: -5 },
-              { rotateX: -3, rotateY: 3, ease: "none", scrollTrigger: trigger }
+              { rotateX: -3, rotateY: 3, ease: "none", scrollTrigger: trigger },
             );
           }
         }
       });
     },
-    { scope: ref }
+    { scope: ref },
   );
 
   return (

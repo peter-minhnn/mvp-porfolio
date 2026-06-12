@@ -17,9 +17,7 @@ export function useReveal(ref: RefObject<HTMLElement | null>) {
       const mm = gsap.matchMedia();
 
       mm.add(MOTION_OK, () => {
-        const items = Array.from(
-          root.querySelectorAll<HTMLElement>("[data-reveal]")
-        );
+        const items = Array.from(root.querySelectorAll<HTMLElement>("[data-reveal]"));
         for (const el of items) {
           gsap.from(el, {
             y: 30,
@@ -35,6 +33,6 @@ export function useReveal(ref: RefObject<HTMLElement | null>) {
         }
       });
     },
-    { scope: ref }
+    { scope: ref },
   );
 }

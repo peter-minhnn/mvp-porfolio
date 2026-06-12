@@ -20,14 +20,9 @@ function SkillKey({ skill }: { skill: Skill }) {
         className="group relative block outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus"
       >
         {/* Base / shadow edge of the key */}
-        <span
-          aria-hidden
-          className="absolute inset-0 translate-y-[7px] rounded-md bg-ink/20"
-        />
+        <span aria-hidden className="absolute inset-0 translate-y-[7px] rounded-md bg-ink/20" />
         {/* Cap */}
-        <span
-          className="relative flex items-center gap-3 rounded-md border border-ink/15 bg-white px-5 py-3.5 transition-transform duration-150 ease-out group-hover:translate-y-[5px] group-focus-visible:translate-y-[5px] motion-reduce:transition-none"
-        >
+        <span className="relative flex items-center gap-3 rounded-md border border-ink/15 bg-white px-5 py-3.5 transition-transform duration-150 ease-out group-hover:translate-y-[5px] group-focus-visible:translate-y-[5px] motion-reduce:transition-none">
           <img
             src={skill.icon}
             alt=""
@@ -65,10 +60,7 @@ export function SkillsKeys() {
           </p>
         </div>
 
-        <ul
-          data-reveal
-          className="mt-12 flex flex-wrap gap-x-4 gap-y-5 pb-2"
-        >
+        <ul data-reveal className="mt-12 flex flex-wrap gap-x-4 gap-y-5 pb-2">
           {site.skills.items.map((skill) => (
             <SkillKey key={skill.name} skill={skill} />
           ))}

@@ -1,4 +1,4 @@
-<!-- @mp-sentinel-generated generatorVersion=3.0.0 sourceIndexSchema=1.5 sourceIndexHash=68184043175e237f agent=claude projectName=mvp generationConfigHash=a470c6e5696b89bd -->
+<!-- @mp-sentinel-generated generatorVersion=3.0.0 sourceIndexSchema=1.5 sourceIndexHash=8f3b09313014889d agent=claude projectName=mvp generationConfigHash=a470c6e5696b89bd -->
 ## Clean Code Checklist
 
 Before submitting code for review, verify:

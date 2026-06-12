@@ -74,7 +74,7 @@ export function SiteNav() {
           "sticky top-0 z-40 border-b transition-colors duration-300",
           scrolled
             ? "border-hairline bg-canvas/90 backdrop-blur-md"
-            : "border-transparent bg-canvas"
+            : "border-transparent bg-canvas",
         )}
       >
         <nav
@@ -130,9 +130,7 @@ export function SiteNav() {
               </SheetTrigger>
               <SheetContent side="right">
                 <SheetTitle className="sr-only">Menu</SheetTitle>
-                <SheetDescription className="sr-only">
-                  Site navigation
-                </SheetDescription>
+                <SheetDescription className="sr-only">Site navigation</SheetDescription>
                 <div className="flex h-full flex-col px-7 pt-20 pb-8">
                   <ul className="flex flex-col">
                     {site.nav.map((link, i) => (

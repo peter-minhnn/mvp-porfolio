@@ -1,11 +1,11 @@
 allowBuilds:
-  '@google/genai': set this to true or false
-  protobufjs: set this to true or false
-  sharp: set this to true or false
-  tree-sitter: set this to true or false
-  tree-sitter-javascript: set this to true or false
-  tree-sitter-typescript: set this to true or false
-  unrs-resolver: set this to true or false
+  '@google/genai': false
+  protobufjs: false
+  sharp: false
+  tree-sitter: false
+  tree-sitter-javascript: false
+  tree-sitter-typescript: false
+  unrs-resolver: false
 ignoredBuiltDependencies:
   - sharp
   - unrs-resolver

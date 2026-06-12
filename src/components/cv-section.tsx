@@ -11,10 +11,7 @@ import { useReveal } from "@/lib/use-reveal";
 /** Stylized paper-stack illustration — a CSS 3D nod without any WebGL. */
 function CvIllustration() {
   return (
-    <div
-      aria-hidden
-      className="relative mx-auto h-56 w-44 [perspective:900px] sm:h-64 sm:w-52"
-    >
+    <div aria-hidden className="relative mx-auto h-56 w-44 [perspective:900px] sm:h-64 sm:w-52">
       <div className="absolute inset-0 translate-x-4 translate-y-4 rounded-sm border border-ink/15 bg-canvas [transform:rotate(6deg)]" />
       <div className="absolute inset-0 translate-x-2 translate-y-2 rounded-sm border border-ink/20 bg-canvas [transform:rotate(3deg)]" />
       <div className="absolute inset-0 flex flex-col gap-3 rounded-sm border border-ink/25 bg-white p-5">

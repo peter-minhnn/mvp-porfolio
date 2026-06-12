@@ -43,13 +43,7 @@ type ScatterProps = {
   children: ReactNode;
 };
 
-function Scatter({
-  base,
-  scatter,
-  rotation = [0, 0, 0],
-  progress,
-  children,
-}: ScatterProps) {
+function Scatter({ base, scatter, rotation = [0, 0, 0], progress, children }: ScatterProps) {
   const group = useRef<THREE.Group>(null);
 
   useFrame(() => {
@@ -60,7 +54,7 @@ function Scatter({
     g.position.set(
       base[0] + scatter[0] * eased,
       base[1] + scatter[1] * eased,
-      base[2] + scatter[2] * eased
+      base[2] + scatter[2] * eased,
     );
   });
 
@@ -125,18 +119,8 @@ function Rig({
     const p = progress.current ?? 0;
     const px = interactive ? state.pointer.x : 0;
     const py = interactive ? state.pointer.y : 0;
-    g.rotation.x = THREE.MathUtils.damp(
-      g.rotation.x,
-      -0.1 + py * 0.07 - p * 0.16,
-      3,
-      delta
-    );
-    g.rotation.y = THREE.MathUtils.damp(
-      g.rotation.y,
-      -0.3 + px * 0.16 + p * 0.1,
-      3,
-      delta
-    );
+    g.rotation.x = THREE.MathUtils.damp(g.rotation.x, -0.1 + py * 0.07 - p * 0.16, 3, delta);
+    g.rotation.y = THREE.MathUtils.damp(g.rotation.y, -0.3 + px * 0.16 + p * 0.1, 3, delta);
     g.position.y = THREE.MathUtils.damp(g.position.y, p * 0.55, 3, delta);
   });
 
@@ -147,24 +131,13 @@ function Rig({
   );
 }
 
-function Scene({
-  progress,
-  reduced,
-}: {
-  progress: RefObject<number>;
-  reduced: boolean;
-}) {
+function Scene({ progress, reduced }: { progress: RefObject<number>; reduced: boolean }) {
   const content = (
     <Rig progress={progress} interactive={!reduced}>
       {/* Main console slab + screen details */}
       <Scatter base={[0, 0.08, 0]} scatter={[0, 0, -0.7]} progress={progress}>
         <Slab size={[3.6, 2.25, 0.16]} color="#0d352d" radius={0.07} />
-        <Slab
-          size={[3.22, 1.86, 0.03]}
-          color="#0a2a23"
-          radius={0.04}
-          position={[0, 0.02, 0.09]}
-        />
+        <Slab size={[3.22, 1.86, 0.03]} color="#0a2a23" radius={0.04} position={[0, 0.02, 0.09]} />
         <Rule width={2.4} position={[-0.18, 0.56, 0.12]} />
         <Rule width={1.7} position={[-0.53, 0.18, 0.12]} opacity={0.22} />
         <Rule width={2.0} position={[-0.38, -0.16, 0.12]} opacity={0.16} />
