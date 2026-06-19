@@ -94,17 +94,18 @@ export function Hero() {
         });
       });
 
-      // Pinned, scrubbed hero moment (desktop only): copy recedes while the
-      // 3D build gently disassembles.
+      // Scrubbed hero exit (desktop only): copy recedes while the 3D build
+      // gently disassembles. Not pinned — pinning the first section jolts a
+      // frame as it switches to fixed positioning, so we drive it as a plain
+      // scroll-linked scrub for a jank-free start.
       mm.add(`(min-width: 768px) and ${MOTION_OK}`, () => {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "top top",
-            end: "+=55%",
+            end: "+=70%",
             scrub: 0.45,
-            pin: true,
-            anticipatePin: 1,
+            invalidateOnRefresh: true,
             onUpdate: (self) => {
               progressRef.current = self.progress;
             },

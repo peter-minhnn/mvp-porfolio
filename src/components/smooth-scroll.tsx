@@ -31,6 +31,10 @@ export function SmoothScroll() {
     gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);
 
+    // Web fonts change text metrics after first paint, which shifts every
+    // trigger's start/end. Recompute once they're ready so nothing jumps.
+    document.fonts?.ready.then(() => ScrollTrigger.refresh());
+
     // Smooth-scroll in-page anchors through Lenis.
     const onClick = (event: MouseEvent) => {
       const anchor = (event.target as HTMLElement).closest?.(
