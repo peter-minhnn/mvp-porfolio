@@ -6,25 +6,31 @@ import { ShotCard } from "@/components/project-media";
 import { TypingText } from "@/components/typing-text";
 import { Badge } from "@/components/ui/badge";
 import type { Project } from "@/content/site";
-import { gsap, MOTION_OK, ScrollTrigger, useGSAP } from "@/lib/gsap";
+import { DESKTOP, gsap, MOTION_OK, ScrollTrigger, useGSAP } from "@/lib/gsap";
 
-/** Watches the scene cards and reports which one is at viewport centre. */
+/** Watches the scene cards and reports which one is at viewport centre.
+ * Desktop-only: on mobile the copy column isn't sticky, so switching the active
+ * scene is invisible and only churns re-renders/tweens mid-scroll (jank). */
 function useActiveScene(ref: React.RefObject<HTMLElement | null>, set: (i: number) => void): void {
   useGSAP(
     () => {
       const root = ref.current;
       if (!root) return;
-      const cards = Array.from(root.querySelectorAll<HTMLElement>("[data-scene]"));
-      for (const [i, card] of cards.entries()) {
-        ScrollTrigger.create({
-          trigger: card,
-          start: "top 60%",
-          end: "bottom 40%",
-          onToggle: (self) => {
-            if (self.isActive) set(i);
-          },
-        });
-      }
+      const mm = gsap.matchMedia();
+
+      mm.add(DESKTOP, () => {
+        const cards = Array.from(root.querySelectorAll<HTMLElement>("[data-scene]"));
+        for (const [i, card] of cards.entries()) {
+          ScrollTrigger.create({
+            trigger: card,
+            start: "top 60%",
+            end: "bottom 40%",
+            onToggle: (self) => {
+              if (self.isActive) set(i);
+            },
+          });
+        }
+      });
     },
     { scope: ref },
   );
