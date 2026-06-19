@@ -76,13 +76,13 @@ export function ProjectStory({
     >
       <div className="md:sticky md:top-0 md:flex md:min-h-screen md:flex-col md:justify-center md:py-24">
         <div className="relative flex flex-col items-start">
+          {/* Ghost numeral via ::before — decorative, excluded from a11y/contrast. */}
           <span
             data-index
-            aria-hidden
-            className="font-display pointer-events-none absolute -top-12 -left-1 text-[7rem] leading-none font-semibold text-primary/5 select-none md:-top-16 md:text-[9rem]"
-          >
-            {number}
-          </span>
+            aria-hidden="true"
+            data-num={number}
+            className="font-display pointer-events-none absolute -top-12 -left-1 text-[7rem] leading-none font-semibold text-primary/5 select-none before:content-[attr(data-num)] md:-top-16 md:text-[9rem]"
+          />
 
           <div className="flex items-center gap-3">
             <Badge variant="coral">{eyebrow}</Badge>

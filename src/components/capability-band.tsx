@@ -91,7 +91,7 @@ export function CapabilityBand() {
       <div data-band className="bg-deep-green text-white">
         <div className="container-site py-24 md:py-32">
           <div className="max-w-2xl">
-            <p data-reveal className="mono-label text-xs text-white/55">
+            <p data-reveal className="mono-label text-xs text-white/65">
               {site.about.eyebrow}
             </p>
             <h2

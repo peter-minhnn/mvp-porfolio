@@ -68,7 +68,7 @@ export function ContactCta() {
             </Button>
           </div>
 
-          <p data-reveal className="mono-label mt-14 text-[11px] text-white/45">
+          <p data-reveal className="mono-label mt-14 text-[11px] text-white/65">
             {site.profile.availability} · {site.profile.location}
           </p>
         </div>

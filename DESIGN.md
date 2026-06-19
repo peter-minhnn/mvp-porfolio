@@ -36,8 +36,8 @@ What makes the system distinctive is the mix of austere black-and-white UI with 
 ### Text & Rules
 
 - **Ink** (`#212121`): Default body text and most link text on light backgrounds.
-- **Muted Slate** (`#93939f`): Footer links, dates, metadata, and de-emphasized labels.
-- **Slate** (`#75758a`): Research separators and tertiary text.
+- **Muted Slate** (`#93939f`): Decorative-only; never use for real text on light backgrounds (fails AA).
+- **Slate Mid** (`#6c6c80`): Tertiary text, eyebrows, `mono-label` chips, and metadata. Tuned to clear WCAG AA (≈5:1 on white) — do not lighten it.
 - **Hairline** (`#d9d9dd`): Standard list rules and section dividers.
 - **Border Light** (`#e5e7eb`): Secondary divider and utility rule.
 
@@ -46,6 +46,15 @@ What makes the system distinctive is the mix of austere black-and-white UI with 
 - **Focus Blue** (`#4c6ee6`): Keyboard focus and ring color.
 - **Form Focus Violet** (`#9b60aa`): Focus border for text inputs.
 - **Error Red** (`#b30000`): Extracted ring/shadow color associated with validation-like states.
+
+### Accessibility & Contrast (WCAG AA — keep Lighthouse a11y at 100)
+
+All real text must meet WCAG AA: **≥4.5:1** for normal text, **≥3:1** for large text (≥24px, or ≥18.66px bold). Verify any new color/opacity pairing before shipping.
+
+- **Text on light (`--color-canvas` #ffffff):** body uses `text-ink` / `text-ink/75–80`; secondary text uses `text-slate-mid` (#6c6c80). Do **not** use `muted-slate` or `text-primary/5–20` for readable text.
+- **Text on dark (`bg-primary` #17171c, e.g. the footer):** the muted-white scale is **`text-white/65` minimum** for small/secondary text and `text-white/70` for body. `white/40–55` fails AA — avoid for text (fine for borders/underline decoration only).
+- **Coral (`#ff7759`) is not a text color on light** (≈2.6:1). Use coral for fills, borders, icons, and accents; for coral chips use `bg-coral-soft/15 text-ink` (the `Badge variant="coral"`), and dark text on coral fills (`text-primary`).
+- **Decorative ghost text** (e.g. the oversized `01`/`02` project numerals at `text-primary/5`) is rendered via a CSS `::before` (`before:content-[attr(data-num)]` with `aria-hidden`) so it stays intentionally faint **without** being flagged by contrast/accessibility audits. Use this pattern for any sub-AA decorative glyph rather than a real text node.
 
 ### Gradient System
 

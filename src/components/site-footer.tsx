@@ -10,7 +10,7 @@ export function SiteFooter() {
       <div className="container-site grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr] md:py-20">
         <div className="flex flex-col items-start gap-5">
           <span className="font-display text-lg tracking-tight">{site.profile.wordmark}</span>
-          <p className="max-w-72 text-sm leading-relaxed text-white/55">{site.footer.note}</p>
+          <p className="max-w-72 text-sm leading-relaxed text-white/70">{site.footer.note}</p>
           <Tooltip>
             <TooltipTrigger asChild>
               <a
@@ -28,7 +28,7 @@ export function SiteFooter() {
 
         {site.footer.columns.map((column) => (
           <nav key={column.title} aria-label={column.title}>
-            <h3 className="mono-label text-[11px] text-white/45">{column.title}</h3>
+            <h3 className="mono-label text-[11px] text-white/65">{column.title}</h3>
             <ul className="mt-5 flex flex-col gap-3">
               {column.links.map((link) => (
                 <li key={link.label}>
@@ -49,7 +49,7 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="container-site flex flex-col gap-2 py-6 text-xs text-white/40 md:flex-row md:items-center md:justify-between">
+        <div className="container-site flex flex-col gap-2 py-6 text-xs text-white/65 md:flex-row md:items-center md:justify-between">
           <p>{site.footer.legal}</p>
           <p className="mono-label text-[10px]">{site.profile.location}</p>
         </div>
