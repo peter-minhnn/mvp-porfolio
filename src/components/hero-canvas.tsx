@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, type ReactNode, type RefObject } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, RoundedBox } from "@react-three/drei";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { type ReactNode, type RefObject, useRef } from "react";
 import * as THREE from "three";
 
 /**

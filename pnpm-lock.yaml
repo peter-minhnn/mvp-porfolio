@@ -57,8 +57,8 @@ importers:
         specifier: ^1.17.0
         version: 1.17.0(react@19.2.4)
       mp-sentinel:
-        specifier: ^3.1.0
-        version: 3.1.0
+        specifier: ^3.2.5
+        version: 3.2.5
       next:
         specifier: 16.2.9
         version: 16.2.9(@babel/core@7.29.7)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -1066,9 +1066,6 @@ packages:
 
   '@types/json5@0.0.29':
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
-
-  '@types/node@20.19.42':
-    resolution: {integrity: sha512-5L7SUaFC1RyDraj2yRhyBzHTobyXHmohD100CChNtyPyleoq37Mqab5Gn8XEKI04dfN/oqPdpHk38MgcQWHbZg==}
 
   '@types/node@20.19.43':
     resolution: {integrity: sha512-6oYBAi5ikg4Pl+kGsoYtawUMBT2zZMCvPNF7pVLnHZfd1zf38DRiWn/gT01RYCdUqkv7Fhr+C9ot4/tb+2sVvA==}
@@ -2455,8 +2452,8 @@ packages:
   motion-utils@12.39.0:
     resolution: {integrity: sha512-8nadJAJjTtqRkmRF36FoJTrywK9nnFmnPwnSMyxaOCU7GDjN9RTMJIxx9De8ErM+vpPhMccr/6fo5WciyQLnMQ==}
 
-  mp-sentinel@3.1.0:
-    resolution: {integrity: sha512-55WEwQXzaM826fKh/KsUnkJNb8c+9wIM3NIkYRN0Xw6j5Pk0d4aHIVhhDjwaetd+NiITCZZkXbofRQLnRjc1fA==}
+  mp-sentinel@3.2.5:
+    resolution: {integrity: sha512-R1kBdfFVHw5w0ulOqC11cOi5BRnNSojr2Dt2FRW8Sg2JihuaPe2Q2jgzQD+hlVx6fGyIe9jJ0te+idVGPgaEsA==}
     engines: {node: '>=20.11.0'}
     hasBin: true
 
@@ -4076,10 +4073,6 @@ snapshots:
 
   '@types/json5@0.0.29': {}
 
-  '@types/node@20.19.42':
-    dependencies:
-      undici-types: 6.21.0
-
   '@types/node@20.19.43':
     dependencies:
       undici-types: 6.21.0
@@ -5585,7 +5578,7 @@ snapshots:
 
   motion-utils@12.39.0: {}
 
-  mp-sentinel@3.1.0:
+  mp-sentinel@3.2.5:
     dependencies:
       '@google/genai': 2.8.0(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))
       '@modelcontextprotocol/sdk': 1.29.0(zod@4.4.3)
@@ -5807,7 +5800,7 @@ snapshots:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.1
-      '@types/node': 20.19.42
+      '@types/node': 20.19.43
       long: 5.3.2
 
   proxy-addr@2.0.7:

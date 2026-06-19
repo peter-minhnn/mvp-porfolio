@@ -2,7 +2,7 @@
 
 import type { RefObject } from "react";
 
-import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
+import { gsap, MOTION_OK, useGSAP } from "@/lib/gsap";
 
 /**
  * Standard section reveal: any child with `data-reveal` rises in when it

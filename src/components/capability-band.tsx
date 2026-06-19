@@ -1,10 +1,10 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
+import { type ReactNode, useRef } from "react";
 
 import { Button } from "@/components/ui/button";
-import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
-import { site, type Capability } from "@/content/site";
+import { type Capability, site } from "@/content/site";
+import { gsap, MOTION_OK, useGSAP } from "@/lib/gsap";
 import { useReveal } from "@/lib/use-reveal";
 
 const icons: Record<Capability["icon"], ReactNode> = {
@@ -15,7 +15,7 @@ const icons: Record<Capability["icon"], ReactNode> = {
       fill="none"
       stroke="currentColor"
       strokeWidth="1.4"
-      aria-hidden
+      aria-hidden="true"
     >
       <circle cx="24" cy="24" r="16" />
       <path d="M24 4v8M24 36v8M4 24h8M36 24h8" />
@@ -29,7 +29,7 @@ const icons: Record<Capability["icon"], ReactNode> = {
       fill="none"
       stroke="currentColor"
       strokeWidth="1.4"
-      aria-hidden
+      aria-hidden="true"
     >
       <rect x="10" y="8" width="28" height="9" rx="2" />
       <rect x="10" y="20" width="28" height="9" rx="2" />
@@ -44,7 +44,7 @@ const icons: Record<Capability["icon"], ReactNode> = {
       fill="none"
       stroke="currentColor"
       strokeWidth="1.4"
-      aria-hidden
+      aria-hidden="true"
     >
       <path d="M38 24a14 14 0 1 1-4.1-9.9" />
       <path d="M38 8v8h-8" />

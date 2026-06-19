@@ -1,4 +1,4 @@
-<!-- @mp-sentinel-generated generatorVersion=3.0.0 sourceIndexSchema=1.5 sourceIndexHash=8f3b09313014889d agent=claude projectName=mvp generationConfigHash=a470c6e5696b89bd -->
+<!-- @mp-sentinel-generated generatorVersion=3.1.0 sourceIndexSchema=1.5 sourceIndexHash=9346fd0627574794 agent=claude projectName=mvp generationConfigHash=a470c6e5696b89bd -->
 ## Architecture
 
 Graph-aware index (schema 1.5). Import edges: 52.

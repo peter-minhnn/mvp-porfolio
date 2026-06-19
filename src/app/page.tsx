@@ -1,3 +1,4 @@
+import { BackToTop } from "@/components/back-to-top";
 import { CapabilityBand } from "@/components/capability-band";
 import { ContactCta } from "@/components/contact-cta";
 import { CvSection } from "@/components/cv-section";
@@ -20,6 +21,7 @@ export default function Home() {
         <ContactCta />
       </main>
       <SiteFooter />
+      <BackToTop />
     </>
   );
 }

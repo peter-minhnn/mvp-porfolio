@@ -23,7 +23,7 @@
   --color-hairline: #d9d9dd;
   --color-line-light: #e5e7eb;
   --color-muted-slate: #93939f;
-  --color-slate-mid: #75758a;
+  --color-slate-mid: #6c6c80;
   --color-focus: #4c6ee6;
 
   /* Type */
@@ -94,8 +94,11 @@
     *,
     *::before,
     *::after {
+      /* biome-ignore lint/complexity/noImportantStyles: reduced-motion reset must override all animation/transition declarations */
       animation-duration: 0.01ms !important;
+      /* biome-ignore lint/complexity/noImportantStyles: reduced-motion reset must override all animation/transition declarations */
       animation-iteration-count: 1 !important;
+      /* biome-ignore lint/complexity/noImportantStyles: reduced-motion reset must override all animation/transition declarations */
       transition-duration: 0.01ms !important;
     }
   }

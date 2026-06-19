@@ -5,6 +5,16 @@
 
 export type NavLink = { label: string; href: string };
 
+/** A single screenshot in a project's scroll story. When `eyebrow`/`title`/
+ * `description` are set, the pinned copy swaps to them (with a typing effect)
+ * as this screenshot scrolls to center; otherwise the project default shows. */
+export type Scene = {
+  image: string;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+};
+
 export type Project = {
   slug: string;
   chip: string;
@@ -14,6 +24,16 @@ export type Project = {
   highlights: string[];
   stack: string[];
   repo: string;
+  /** Public live deployment. */
+  liveUrl: string;
+  /** Domain label shown on the card (no scheme). */
+  domain: string;
+  /** Plain screenshots under /public; stacked and scrolled. Falls back to the
+   * mockup when empty or if an image fails to load. */
+  images?: string[];
+  /** Scrollytelling sequence: screenshots that drive the left copy as they
+   * scroll past. Takes precedence over `images` when present. */
+  scenes?: Scene[];
   visual: "console" | "stone";
 };
 
@@ -115,6 +135,39 @@ export const site = {
         ],
         stack: ["Next.js", "TypeScript", "Supabase", "AI"],
         repo: "https://github.com/peter-minhnn/mvp-listening",
+        liveUrl: "https://learning.mvpenglish.com/",
+        domain: "learning.mvpenglish.com",
+        scenes: [
+          { image: "/projects/mvp-listening-home.jpg" },
+          {
+            image: "/projects/mvp-listening-tests.jpg",
+            eyebrow: "Tests",
+            title: "A growing library of real IELTS Listening tests",
+            description:
+              "Browse the test catalogue, pick an exam, and start practising in seconds — each one imported from real Cambridge-style material.",
+          },
+          {
+            image: "/projects/mvp-listening-realtest.jpg",
+            eyebrow: "Real test mode",
+            title: "Sit it exactly like the real exam",
+            description:
+              "Real test mode runs the full timing across all four sections, locks navigation, and only reveals your band score at the very end.",
+          },
+          {
+            image: "/projects/mvp-listening-review.jpg",
+            eyebrow: "Review",
+            title: "Review every answer with the transcript",
+            description:
+              "After submitting, walk through each question against the audio transcript — see what you missed and why, then save tricky words.",
+          },
+          {
+            image: "/projects/mvp-listening-dictation.jpg",
+            eyebrow: "Dictation",
+            title: "Sharpen your ear with dictation drills",
+            description:
+              "Replay sentences line by line and type what you hear — the fastest way to close the gap between hearing English and understanding it.",
+          },
+        ],
         visual: "console",
       },
       {
@@ -131,6 +184,14 @@ export const site = {
         ],
         stack: ["TypeScript", "Node.js", "CLI", "AI"],
         repo: "https://github.com/peter-minhnn/mp-sentinel",
+        liveUrl: "https://mp-sentinel.vercel.app/",
+        domain: "mp-sentinel.vercel.app",
+        images: [
+          "/projects/mp-sentinel-1.jpg",
+          "/projects/mp-sentinel-2.jpg",
+          "/projects/mp-sentinel-3.jpg",
+          "/projects/mp-sentinel-4.jpg",
+        ],
         visual: "stone",
       },
     ] satisfies Project[],

@@ -1,9 +1,8 @@
 "use client";
 
 import { useRef } from "react";
-/* eslint-disable @next/next/no-img-element -- static decorative SVG logos */
 
-import { site, type Skill } from "@/content/site";
+import { type Skill, site } from "@/content/site";
 import { useReveal } from "@/lib/use-reveal";
 
 /**
@@ -11,18 +10,21 @@ import { useReveal } from "@/lib/use-reveal";
  * (or keyboard focus) the cap presses down like a real key — pure CSS
  * transforms, no JS, so it stays cheap and reduced-motion friendly.
  */
-function SkillKey({ skill }: { skill: Skill }) {
+function SkillKey({ skill }: { skill: Skill }): React.JSX.Element {
   return (
     <li className="[perspective:600px]">
-      <div
-        tabIndex={0}
-        aria-label={skill.name}
-        className="group relative block outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus"
+      <button
+        type="button"
+        className="group relative block cursor-default outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus"
       >
         {/* Base / shadow edge of the key */}
-        <span aria-hidden className="absolute inset-0 translate-y-[7px] rounded-md bg-ink/20" />
+        <span
+          aria-hidden="true"
+          className="absolute inset-0 translate-y-[7px] rounded-md bg-ink/20"
+        />
         {/* Cap */}
         <span className="relative flex items-center gap-3 rounded-md border border-ink/15 bg-white px-5 py-3.5 transition-transform duration-150 ease-out group-hover:translate-y-[5px] group-focus-visible:translate-y-[5px] motion-reduce:transition-none">
+          {/* biome-ignore lint/performance/noImgElement: static decorative SVG logo, next/image adds no benefit */}
           <img
             src={skill.icon}
             alt=""
@@ -33,7 +35,7 @@ function SkillKey({ skill }: { skill: Skill }) {
           />
           <span className="text-sm font-medium text-primary">{skill.name}</span>
         </span>
-      </div>
+      </button>
     </li>
   );
 }

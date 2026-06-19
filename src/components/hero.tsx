@@ -1,15 +1,14 @@
 "use client";
 
-import { useRef } from "react";
-import dynamic from "next/dynamic";
 import { useReducedMotion } from "framer-motion";
 import { ArrowRightIcon } from "lucide-react";
-
+import dynamic from "next/dynamic";
+import { useRef } from "react";
+import { CvPreviewDialog } from "@/components/cv-dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { CvPreviewDialog } from "@/components/cv-dialog";
-import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
 import { mailto, site } from "@/content/site";
+import { gsap, MOTION_OK, useGSAP } from "@/lib/gsap";
 
 const HeroCanvas = dynamic(() => import("./hero-canvas"), {
   ssr: false,
@@ -49,7 +48,7 @@ function SideCardIllustration() {
   return (
     <svg
       viewBox="0 0 240 240"
-      aria-hidden
+      aria-hidden="true"
       className="h-auto w-full max-w-50 text-deep-green"
       fill="none"
       stroke="currentColor"

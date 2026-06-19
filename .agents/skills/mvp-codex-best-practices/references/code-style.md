@@ -1,4 +1,4 @@
-<!-- @mp-sentinel-generated generatorVersion=3.0.0 sourceIndexSchema=1.5 sourceIndexHash=8f3b09313014889d agent=codex projectName=mvp generationConfigHash=a470c6e5696b89bd -->
+<!-- @mp-sentinel-generated generatorVersion=3.1.0 sourceIndexSchema=1.5 sourceIndexHash=9346fd0627574794 agent=codex projectName=mvp generationConfigHash=a470c6e5696b89bd -->
 ## Code Style
 
 Auto-detected code style from the codebase. These rules should be followed by the agent when writing new code.

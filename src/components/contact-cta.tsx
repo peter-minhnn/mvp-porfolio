@@ -1,11 +1,11 @@
 "use client";
 
-import { useRef } from "react";
 import { ArrowRightIcon } from "lucide-react";
+import { useRef } from "react";
 
 import { Button } from "@/components/ui/button";
-import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
 import { mailto, site } from "@/content/site";
+import { gsap, MOTION_OK, useGSAP } from "@/lib/gsap";
 import { useReveal } from "@/lib/use-reveal";
 
 /**

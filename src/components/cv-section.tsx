@@ -1,10 +1,9 @@
 "use client";
 
-import { useRef } from "react";
 import { DownloadIcon, ExternalLinkIcon, FileTextIcon } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
+import { useRef } from "react";
 import { CvPreviewDialog } from "@/components/cv-dialog";
+import { Button } from "@/components/ui/button";
 import { site } from "@/content/site";
 import { useReveal } from "@/lib/use-reveal";
 

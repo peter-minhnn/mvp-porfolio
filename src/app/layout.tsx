@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 import "@fontsource-variable/space-grotesk";
 import "@fontsource-variable/inter";
@@ -7,15 +7,107 @@ import "./globals.css";
 
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { site } from "@/content/site";
+import { SITE_URL } from "@/lib/site-url";
+
+const { profile, hero } = site;
+const fullTitle = `${profile.name} — ${profile.role}`;
 
 export const metadata: Metadata = {
-  title: `${site.profile.studio} — ${site.profile.role}`,
-  description: site.hero.lead,
-  openGraph: {
-    title: `${site.profile.studio} — from idea to shipped product in weeks`,
-    description: site.hero.lead,
-    type: "website",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: fullTitle,
+    template: `%s — ${profile.name}`,
   },
+  description: hero.lead,
+  applicationName: profile.studio,
+  authors: [{ name: profile.name, url: profile.github }],
+  creator: profile.name,
+  publisher: profile.name,
+  keywords: [
+    profile.name,
+    "full-stack developer",
+    "product engineer",
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Supabase",
+    "GSAP",
+    "IELTS listening app",
+    "developer tooling",
+    "portfolio",
+    "Ho Chi Minh City",
+  ],
+  category: "technology",
+  alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: profile.studio,
+    title: fullTitle,
+    description: hero.lead,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: fullTitle,
+    description: hero.lead,
+  },
+  formatDetection: { telephone: false },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  colorScheme: "light",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#17171c" },
+  ],
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  url: SITE_URL,
+  jobTitle: profile.role,
+  email: `mailto:${profile.email}`,
+  image: `${SITE_URL}/opengraph-image.png`,
+  sameAs: [profile.github],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Ho Chi Minh City",
+    addressCountry: "VN",
+  },
+  knowsAbout: [
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Node.js",
+    "Supabase",
+    "GSAP",
+    "Product engineering",
+  ],
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: fullTitle,
+  url: SITE_URL,
+  inLanguage: "en",
+  author: { "@type": "Person", name: profile.name, url: SITE_URL },
 };
 
 export default function RootLayout({
@@ -34,6 +126,11 @@ export default function RootLayout({
           Skip to content
         </a>
         {children}
+        <script
+          type="application/ld+json"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: trusted, build-time structured data
+          dangerouslySetInnerHTML={{ __html: JSON.stringify([personJsonLd, websiteJsonLd]) }}
+        />
       </body>
     </html>
   );

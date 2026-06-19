@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
 import Lenis from "lenis";
+import { useEffect } from "react";
 
 import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { setLenis } from "@/lib/scroll";
 
 /**
  * Lenis drives the scroll; ScrollTrigger listens to it. Disabled entirely for
@@ -17,8 +18,9 @@ export function SmoothScroll() {
 
     const lenis = new Lenis({
       duration: 1.05,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      easing: (t: number) => Math.min(1, 1.001 - 2 ** (-10 * t)),
     });
+    setLenis(lenis);
 
     const onScroll = () => ScrollTrigger.update();
     lenis.on("scroll", onScroll);
@@ -49,6 +51,7 @@ export function SmoothScroll() {
       gsap.ticker.remove(tick);
       lenis.off("scroll", onScroll);
       lenis.destroy();
+      setLenis(null);
     };
   }, []);
 

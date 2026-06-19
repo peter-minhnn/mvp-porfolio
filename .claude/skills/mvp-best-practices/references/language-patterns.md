@@ -1,4 +1,4 @@
-<!-- @mp-sentinel-generated generatorVersion=3.0.0 sourceIndexSchema=1.5 sourceIndexHash=8f3b09313014889d agent=claude projectName=mvp generationConfigHash=a470c6e5696b89bd -->
+<!-- @mp-sentinel-generated generatorVersion=3.1.0 sourceIndexSchema=1.5 sourceIndexHash=9346fd0627574794 agent=claude projectName=mvp generationConfigHash=a470c6e5696b89bd -->
 ## Language Patterns
 
 Auto-detected language patterns and framework rules for this codebase. Agents should respect these when writing or reviewing code.
@@ -27,6 +27,8 @@ Applies to: `**/*.tsx`, `**/*.jsx`
 - **SHOULD**: Extract reusable logic into custom hooks rather than duplicating `useEffect` / `useState` patterns.
 - **AVOID**: Do NOT mutate state directly -- always use the setter from `useState` or produce new objects/arrays.
 - **SHOULD**: Use `React.memo` sparingly and only after profiling. Premature memoization can increase memory pressure.
+- **AVOID**: Do NOT declare components inside another component body -- they remount (state reset + full subtree re-render) on every parent render. Move them to module scope.
+- **SHOULD**: Memoize context Provider values (`useMemo`) and keep state as close to where it is used as possible, so one state change does not re-render an entire page.
 
 ### Next.js
 
@@ -38,6 +40,13 @@ Applies to: `**/*.tsx`, `**/*.jsx`, `src/app/**/*`, `pages/**/*`
 - **SHOULD**: Use `next/image` for image optimization instead of `<img>` tags.
 - **SHOULD**: Colocate data fetching close to consuming components. Avoid prop-drilling data through more than 2 layers.
 - **AVOID**: Do NOT import large client-side libraries in Server Components that re-export them -- this can bloat the client bundle.
+
+### Tailwind CSS
+
+Applies to: `**/*.tsx`, `**/*.jsx`, `**/*.html`, `**/*.vue`, `**/*.svelte`, `**/*.astro`
+
+- **SHOULD**: Prefer canonical classes over arbitrary values when the theme scale covers the value: `z-9999` not `z-[9999]`, `grid-cols-7` not `grid-cols-[7]` (Tailwind v4 bare values).
+- **AVOID**: Do NOT hardcode design tokens as arbitrary values (`text-[#e5002c]`, `w-[13px]`) when an equivalent theme token exists -- extend the theme instead so values stay consistent.
 
 ### TypeScript (Strict)
 
