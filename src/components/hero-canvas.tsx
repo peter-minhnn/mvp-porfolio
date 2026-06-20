@@ -2,7 +2,7 @@
 
 import { Float, RoundedBox } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { type ReactNode, type RefObject, useRef } from "react";
+import { type ReactNode, type RefObject, useMemo, useRef } from "react";
 import * as THREE from "three";
 
 /**
@@ -71,17 +71,135 @@ function Slab({
   radius = 0.05,
   roughness = 0.85,
   position = [0, 0, 0] as Vec3,
+  emissive,
+  emissiveIntensity = 0,
 }: {
   size: Vec3;
   color: string;
   radius?: number;
   roughness?: number;
   position?: Vec3;
+  emissive?: string;
+  emissiveIntensity?: number;
 }) {
   return (
     <RoundedBox args={size} radius={radius} smoothness={4} position={position}>
-      <meshStandardMaterial color={color} roughness={roughness} metalness={0.06} />
+      <meshStandardMaterial
+        color={color}
+        roughness={roughness}
+        metalness={0.06}
+        emissive={emissive ?? "#000000"}
+        emissiveIntensity={emissiveIntensity}
+      />
     </RoundedBox>
+  );
+}
+
+/** A soft additive halo (fake bloom) — a camera-facing radial-gradient sprite.
+ * Cheaper than a post-processing pass and needs no extra dependency. */
+function Glow({
+  color,
+  size = 2,
+  position,
+  opacity = 0.6,
+}: {
+  color: string;
+  size?: number;
+  position: Vec3;
+  opacity?: number;
+}) {
+  const texture = useMemo(() => {
+    const canvas = document.createElement("canvas");
+    canvas.width = 128;
+    canvas.height = 128;
+    const ctx = canvas.getContext("2d");
+    if (ctx) {
+      const grad = ctx.createRadialGradient(64, 64, 0, 64, 64, 64);
+      grad.addColorStop(0, color);
+      grad.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 128, 128);
+    }
+    return new THREE.CanvasTexture(canvas);
+  }, [color]);
+
+  return (
+    <mesh position={position}>
+      <planeGeometry args={[size, size]} />
+      <meshBasicMaterial
+        map={texture}
+        transparent
+        opacity={opacity}
+        blending={THREE.AdditiveBlending}
+        depthWrite={false}
+      />
+    </mesh>
+  );
+}
+
+/** Drifting dust field for depth. Pure points, slowly rotating. */
+function Particles({ count = 90 }: { count?: number }) {
+  const ref = useRef<THREE.Points>(null);
+  const positions = useMemo(() => {
+    const arr = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      arr[i * 3] = (Math.random() - 0.5) * 13;
+      arr[i * 3 + 1] = (Math.random() - 0.5) * 8;
+      arr[i * 3 + 2] = (Math.random() - 0.5) * 6 - 1.5;
+    }
+    return arr;
+  }, [count]);
+
+  useFrame((_, delta) => {
+    if (ref.current) ref.current.rotation.y += delta * 0.02;
+  });
+
+  return (
+    <points ref={ref}>
+      <bufferGeometry>
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+      </bufferGeometry>
+      <pointsMaterial
+        size={0.045}
+        color="#7ee0c2"
+        transparent
+        opacity={0.65}
+        sizeAttenuation
+        depthWrite={false}
+      />
+    </points>
+  );
+}
+
+/** Slowly tumbling wireframe icosahedron — the focal accent object. */
+function FocalShape({ progress }: { progress: RefObject<number> }) {
+  const ref = useRef<THREE.Mesh>(null);
+
+  useFrame((_, delta) => {
+    const m = ref.current;
+    if (!m) return;
+    const p = progress.current ?? 0;
+    m.rotation.x += delta * 0.18;
+    m.rotation.y += delta * 0.26;
+    m.position.x = 2.55 + p * 0.6;
+    m.position.y = 1.5 + p * 0.4;
+  });
+
+  return (
+    <group>
+      <Glow color="#ff7759" size={2.6} position={[2.55, 1.5, -0.6]} opacity={0.55} />
+      <mesh ref={ref} position={[2.55, 1.5, -0.4]}>
+        <icosahedronGeometry args={[0.72, 0]} />
+        <meshStandardMaterial
+          color="#ff7759"
+          emissive="#ff7759"
+          emissiveIntensity={0.9}
+          roughness={0.4}
+          metalness={0.1}
+          wireframe
+        />
+      </mesh>
+    </group>
   );
 }
 
@@ -119,9 +237,11 @@ function Rig({
     const p = progress.current ?? 0;
     const px = interactive ? state.pointer.x : 0;
     const py = interactive ? state.pointer.y : 0;
-    g.rotation.x = THREE.MathUtils.damp(g.rotation.x, -0.1 + py * 0.07 - p * 0.16, 3, delta);
-    g.rotation.y = THREE.MathUtils.damp(g.rotation.y, -0.3 + px * 0.16 + p * 0.1, 3, delta);
-    g.position.y = THREE.MathUtils.damp(g.position.y, p * 0.55, 3, delta);
+    // Stronger, springier pointer tracking + slight positional parallax.
+    g.rotation.x = THREE.MathUtils.damp(g.rotation.x, -0.1 + py * 0.16 - p * 0.16, 4, delta);
+    g.rotation.y = THREE.MathUtils.damp(g.rotation.y, -0.3 + px * 0.32 + p * 0.1, 4, delta);
+    g.position.x = THREE.MathUtils.damp(g.position.x, px * 0.22, 4, delta);
+    g.position.y = THREE.MathUtils.damp(g.position.y, py * 0.12 + p * 0.55, 4, delta);
   });
 
   return (
@@ -189,7 +309,13 @@ function Scene({ progress, reduced }: { progress: RefObject<number>; reduced: bo
         rotation={[0.05, 0.2, -0.07]}
         progress={progress}
       >
-        <Slab size={[0.8, 0.27, 0.1]} color="#ff7759" radius={0.1} />
+        <Slab
+          size={[0.8, 0.27, 0.1]}
+          color="#ff7759"
+          radius={0.1}
+          emissive="#ff7759"
+          emissiveIntensity={0.6}
+        />
       </Scatter>
 
       <Scatter
@@ -208,10 +334,14 @@ function Scene({ progress, reduced }: { progress: RefObject<number>; reduced: bo
       <ambientLight intensity={0.9} />
       <directionalLight position={[4, 6, 7]} intensity={1.5} />
       <pointLight position={[-5, -2, 4]} intensity={36} color="#ff7759" />
+      {/* Soft ambient backdrop glow (static, always on) */}
+      <Glow color="#1d6b58" size={9} position={[-1.4, 0.4, -2.6]} opacity={0.5} />
+      {!reduced && <Particles />}
+      {!reduced && <FocalShape progress={progress} />}
       {reduced ? (
         content
       ) : (
-        <Float speed={1.1} rotationIntensity={0.07} floatIntensity={0.4}>
+        <Float speed={1.2} rotationIntensity={0.1} floatIntensity={0.5}>
           {content}
         </Float>
       )}

@@ -9,6 +9,19 @@ import type { Project } from "@/content/site";
 export function ProjectDetails({ project }: { project: Project }): React.JSX.Element {
   return (
     <>
+      {project.metrics && project.metrics.length > 0 && (
+        <dl data-reveal className="mt-7 flex flex-wrap gap-x-10 gap-y-4">
+          {project.metrics.map((metric) => (
+            <div key={metric.label} className="flex flex-col-reverse">
+              <dt className="mono-label mt-2 text-[11px] text-slate-mid">{metric.label}</dt>
+              <dd className="font-display text-3xl leading-none tracking-[-0.02em] text-primary">
+                {metric.value}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      )}
+
       <ul data-reveal className="mt-7 w-full max-w-md">
         {project.highlights.map((highlight) => (
           <li

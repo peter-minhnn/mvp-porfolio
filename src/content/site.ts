@@ -22,6 +22,8 @@ export type Project = {
   headline: string;
   description: string;
   highlights: string[];
+  /** Headline numbers (impact). Rendered as a small stat row on the card. */
+  metrics?: Metric[];
   stack: string[];
   repo: string;
   /** Public live deployment. */
@@ -44,9 +46,24 @@ export type Capability = {
   icon: "scope" | "stack" | "loop";
 };
 
+/** A single headline number shown on a project card. */
+export type Metric = { value: string; label: string };
+
 export type Skill = { name: string; icon: string };
 
-export type Social = { label: string; href: string };
+/** Skills bucketed by discipline so recruiters can scan strengths fast. */
+export type SkillGroup = { title: string; items: Skill[] };
+
+/** One role in the experience timeline. */
+export type Experience = {
+  company: string;
+  role: string;
+  period: string;
+  location: string;
+  summary: string;
+  highlights: string[];
+  stack: string[];
+};
 
 export const site = {
   profile: {
@@ -56,6 +73,7 @@ export const site = {
     role: "Full-stack & product engineer",
     email: "nnminh742@gmail.com",
     github: "https://github.com/peter-minhnn",
+    linkedin: "https://www.linkedin.com/in/minh-nguyen-723237147/",
     location: "Ho Chi Minh City, Vietnam",
     availability: "Open to projects and collaborations",
   },
@@ -68,6 +86,7 @@ export const site = {
   nav: [
     { label: "Projects", href: "#projects" },
     { label: "About", href: "#about" },
+    { label: "Experience", href: "#experience" },
     { label: "Skills", href: "#skills" },
     { label: "CV", href: "#cv" },
     { label: "Contact", href: "#contact" },
@@ -133,6 +152,12 @@ export const site = {
           "Audio test-taking with timed sections and review flow",
           "Vocabulary workflow built from mistakes",
         ],
+        // TODO: số liệu tạm — thay bằng số thật khi có
+        metrics: [
+          { value: "120+", label: "Tests imported" },
+          { value: "4", label: "Practice modes" },
+          { value: "<1s", label: "Audio start" },
+        ],
         stack: ["Next.js", "TypeScript", "Supabase", "AI"],
         repo: "https://github.com/peter-minhnn/mvp-listening",
         liveUrl: "https://learning.mvpenglish.com/",
@@ -182,6 +207,12 @@ export const site = {
           "Multi-provider AI review pipeline",
           "Dry-run mode and security guardrails by default",
         ],
+        // TODO: số liệu tạm — thay bằng số thật khi có
+        metrics: [
+          { value: "3", label: "AI providers" },
+          { value: "10+", label: "Rule packs" },
+          { value: "100%", label: "Dry-run safe" },
+        ],
         stack: ["TypeScript", "Node.js", "CLI", "AI"],
         repo: "https://github.com/peter-minhnn/mp-sentinel",
         liveUrl: "https://mp-sentinel.vercel.app/",
@@ -197,30 +228,94 @@ export const site = {
     ] satisfies Project[],
   },
 
+  experience: {
+    eyebrow: "Experience",
+    heading: "8+ years shipping production software.",
+    lead: "From enterprise platforms at Lotte and FPT to my own products — full-stack across the web, mobile, and cloud.",
+    items: [
+      {
+        company: "Lotte Innovate",
+        role: "Full-stack Developer",
+        period: "Jul 2022 — Present",
+        location: "Ho Chi Minh City",
+        summary:
+          "Build and ship enterprise web platforms across the Lotte group — intranet and asset management, an API product portal, hotel PMS, e-commerce, and healthcare tooling — owning both front-end and back-end.",
+        highlights: [
+          "Delivered 13+ projects end to end: Intranet, NICE API Portal, Hotel PMS, OBranding, ITSAC, and more",
+          "Built reusable component systems and optimized performance across apps",
+          "Partnered with QC on System Integration Testing (SIT) for every release",
+        ],
+        stack: ["Next.js", "NestJs", "React", ".NET Core", "Angular", "AWS"],
+      },
+      {
+        company: "Care Connect Vietnam",
+        role: "Full-stack Developer",
+        period: "Mar 2020 — Jun 2022",
+        location: "Ho Chi Minh City",
+        summary:
+          "Built healthcare platforms for elderly and nursing-home care — web and mobile portals to track health records, visits, rooms, and equipment — owning project structure, APIs, and performance on AWS serverless.",
+        highlights: [
+          "Shipped CCV Internal, CK Buddy, CK Ready, and Home Nursing as web + mobile portals",
+          "Architected on AWS serverless (Lambda, API Gateway, DynamoDB) with Redis caching",
+          "Set up project structure, built the front-end APIs, and optimized performance",
+        ],
+        stack: ["Angular", "React", "NestJs", ".NET Core", "AWS", "Oracle"],
+      },
+      {
+        company: "FPT Telecom",
+        role: "Full-stack Developer",
+        period: "Apr 2017 — Feb 2020",
+        location: "Ho Chi Minh City",
+        summary:
+          "Led development of internal training and e-learning systems for FPT Telecom — a web platform plus a cross-platform mobile app — and a supply-chain management tool, from technical solution to delivery.",
+        highlights: [
+          "Owned the training platform and assigned tasks across the team",
+          "Built the E.FOX mobile app (React Native) with QR check-in for exams",
+          "Designed technical solutions and core framework modules",
+        ],
+        stack: ["React", "React Native", ".NET Core", ".NET MVC", "Kendo UI", "SQL Server"],
+      },
+    ] satisfies Experience[],
+  },
+
   skills: {
     eyebrow: "Skills",
     heading: "The stack I reach for.",
-    lead: "Press a key — these are the tools I work with daily.",
-    items: [
-      { name: "ReactJs", icon: "/logos/react.svg" },
-      { name: "NextJs", icon: "/logos/nextjs.svg" },
-      { name: "Angular", icon: "/logos/angular.svg" },
-      { name: "Vite", icon: "/logos/vite.svg" },
-      { name: ".NET", icon: "/logos/dotnet.svg" },
-      { name: "NodeJs", icon: "/logos/nodejs.svg" },
-      { name: "NestJs", icon: "/logos/nestjs.svg" },
-      { name: "AWS", icon: "/logos/aws.svg" },
-      { name: "HTML5", icon: "/logos/html5.svg" },
-      { name: "CSS", icon: "/logos/css3.svg" },
-      { name: "Tailwindcss", icon: "/logos/tailwindcss.svg" },
-      { name: "React Native", icon: "/logos/reactnative.svg" },
-      { name: "Svelte", icon: "/logos/svelte.svg" },
-      { name: "PostgreSQL", icon: "/logos/postgresql.svg" },
-      { name: "MySQL", icon: "/logos/mysql.svg" },
-      { name: "Oracle", icon: "/logos/oracle.svg" },
-      { name: "SQL Server", icon: "/logos/sqlserver.svg" },
-      { name: "Problem Solving", icon: "/logos/problem-solving.svg" },
-    ] satisfies Skill[],
+    lead: "Press a key — these are the tools I work with daily, grouped by where they live in the stack.",
+    groups: [
+      {
+        title: "Frontend",
+        items: [
+          { name: "ReactJs", icon: "/logos/react.svg" },
+          { name: "NextJs", icon: "/logos/nextjs.svg" },
+          { name: "Angular", icon: "/logos/angular.svg" },
+          { name: "Svelte", icon: "/logos/svelte.svg" },
+          { name: "React Native", icon: "/logos/reactnative.svg" },
+          { name: "Vite", icon: "/logos/vite.svg" },
+          { name: "Tailwindcss", icon: "/logos/tailwindcss.svg" },
+          { name: "HTML5", icon: "/logos/html5.svg" },
+          { name: "CSS", icon: "/logos/css3.svg" },
+        ],
+      },
+      {
+        title: "Backend",
+        items: [
+          { name: "NodeJs", icon: "/logos/nodejs.svg" },
+          { name: "NestJs", icon: "/logos/nestjs.svg" },
+          { name: ".NET", icon: "/logos/dotnet.svg" },
+        ],
+      },
+      {
+        title: "Database & Cloud",
+        items: [
+          { name: "PostgreSQL", icon: "/logos/postgresql.svg" },
+          { name: "MySQL", icon: "/logos/mysql.svg" },
+          { name: "Oracle", icon: "/logos/oracle.svg" },
+          { name: "SQL Server", icon: "/logos/sqlserver.svg" },
+          { name: "AWS", icon: "/logos/aws.svg" },
+        ],
+      },
+    ] satisfies SkillGroup[],
   },
 
   cv: {
@@ -241,11 +336,6 @@ export const site = {
     cta: { label: "Email me" },
   },
 
-  socials: [
-    { label: "Email", href: "mailto:nnminh742@gmail.com" },
-    { label: "GitHub", href: "https://github.com/peter-minhnn" },
-  ] satisfies Social[],
-
   footer: {
     note: "Full-stack & product engineer building AI tooling, English-learning products, and polished web MVPs.",
     columns: [
@@ -254,6 +344,7 @@ export const site = {
         links: [
           { label: "Projects", href: "#projects" },
           { label: "About", href: "#about" },
+          { label: "Experience", href: "#experience" },
           { label: "CV", href: "#cv" },
           { label: "Contact", href: "#contact" },
         ],
@@ -263,6 +354,7 @@ export const site = {
         links: [
           { label: "Email", href: "mailto:nnminh742@gmail.com" },
           { label: "GitHub", href: "https://github.com/peter-minhnn" },
+          { label: "LinkedIn", href: "https://www.linkedin.com/in/minh-nguyen-723237147/" },
         ],
       },
     ],

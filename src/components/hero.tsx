@@ -7,6 +7,7 @@ import { useRef } from "react";
 import { CvPreviewDialog } from "@/components/cv-dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { VariableProximity } from "@/components/variable-proximity";
 import { mailto, site } from "@/content/site";
 import { gsap, MOTION_OK, useGSAP } from "@/lib/gsap";
 
@@ -67,6 +68,7 @@ function SideCardIllustration() {
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
   const progressRef = useRef(0);
   const reduced = useReducedMotion() ?? false;
 
@@ -132,10 +134,23 @@ export function Hero() {
             {site.hero.eyebrow}
           </p>
           <h1
+            ref={headingRef}
             data-hero-reveal
             className="font-display mt-6 max-w-4xl text-[clamp(2.75rem,7.2vw,6rem)] leading-[1.02] tracking-[-0.02em] text-primary"
           >
-            {site.hero.title}
+            {reduced ? (
+              site.hero.title
+            ) : (
+              <VariableProximity
+                label={site.hero.title}
+                containerRef={headingRef}
+                fromFontVariationSettings="'wght' 400"
+                toFontVariationSettings="'wght' 700"
+                radius={140}
+                falloff="gaussian"
+                className="cursor-pointer"
+              />
+            )}
           </h1>
           <p data-hero-reveal className="mt-6 max-w-xl text-lg leading-[1.45] text-ink/80">
             {site.hero.lead}

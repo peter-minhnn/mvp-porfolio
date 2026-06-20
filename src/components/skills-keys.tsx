@@ -62,11 +62,18 @@ export function SkillsKeys() {
           </p>
         </div>
 
-        <ul data-reveal className="mt-12 flex flex-wrap gap-x-4 gap-y-5 pb-2">
-          {site.skills.items.map((skill) => (
-            <SkillKey key={skill.name} skill={skill} />
+        <div className="mt-12 flex flex-col gap-10">
+          {site.skills.groups.map((group) => (
+            <div key={group.title} data-reveal>
+              <h3 className="mono-label text-[11px] text-slate-mid">{group.title}</h3>
+              <ul className="mt-5 flex flex-wrap gap-x-4 gap-y-5 pb-2">
+                {group.items.map((skill) => (
+                  <SkillKey key={skill.name} skill={skill} />
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );

@@ -66,6 +66,11 @@ export function ContactCta() {
             <Button asChild variant="link" size="none" className="text-white/85">
               <a href={`mailto:${site.profile.email}`}>or write to {site.profile.email}</a>
             </Button>
+            <Button asChild variant="link" size="none" className="text-white/85">
+              <a href={site.profile.linkedin} target="_blank" rel="noreferrer">
+                Connect on LinkedIn
+              </a>
+            </Button>
           </div>
 
           <p data-reveal className="mono-label mt-14 text-[11px] text-white/65">
