@@ -13,7 +13,7 @@ function CvIllustration() {
     <div aria-hidden className="relative mx-auto h-56 w-44 [perspective:900px] sm:h-64 sm:w-52">
       <div className="absolute inset-0 translate-x-4 translate-y-4 rounded-sm border border-ink/15 bg-canvas [transform:rotate(6deg)]" />
       <div className="absolute inset-0 translate-x-2 translate-y-2 rounded-sm border border-ink/20 bg-canvas [transform:rotate(3deg)]" />
-      <div className="absolute inset-0 flex flex-col gap-3 rounded-sm border border-ink/25 bg-white p-5">
+      <div className="absolute inset-0 flex flex-col gap-3 rounded-sm border border-ink/25 bg-card p-5">
         <div className="flex items-center gap-2">
           <FileTextIcon className="size-5 text-deep-green" />
           <div className="h-2 w-20 rounded-full bg-primary/30" />

@@ -69,12 +69,16 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  colorScheme: "light",
+  colorScheme: "light dark",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#17171c" },
+    { media: "(prefers-color-scheme: dark)", color: "#0e1013" },
   ],
 };
+
+/** Runs before paint: applies the saved theme (or system preference) to <html>
+ * so there is no flash of the wrong theme on load. */
+const themeInitScript = `(function(){try{var t=localStorage.getItem('theme');var d=t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches);if(d)document.documentElement.classList.add('dark');}catch(e){}})();`;
 
 const personJsonLd = {
   "@context": "https://schema.org",
@@ -116,12 +120,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className="h-full" suppressHydrationWarning>
       <body className="flex min-h-full flex-col overflow-x-clip">
+        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: trusted inline theme bootstrap, runs before paint to prevent FOUC */}
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <SmoothScroll />
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-100 focus:rounded-pill focus:bg-primary focus:px-5 focus:py-2.5 focus:text-sm focus:text-white"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-100 focus:rounded-pill focus:bg-ink-900 focus:px-5 focus:py-2.5 focus:text-sm focus:text-white"
         >
           Skip to content
         </a>

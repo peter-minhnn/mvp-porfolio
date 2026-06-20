@@ -12,7 +12,7 @@ function ConsoleMock({ name }: { name: string }): React.JSX.Element {
     <div className="flex h-full w-full items-center justify-center p-6 sm:p-10">
       <div
         data-tilt-layer
-        className="w-full max-w-105 rounded-md border border-white/10 bg-primary p-5 text-white"
+        className="w-full max-w-105 rounded-md border border-white/10 bg-ink-900 p-5 text-white"
       >
         <div className="flex items-center justify-between">
           <span className="mono-label text-[10px] text-white/55">{name} · test player</span>
@@ -40,8 +40,8 @@ function ConsoleMock({ name }: { name: string }): React.JSX.Element {
         </div>
 
         <div className="mt-3 rounded-sm bg-white p-3">
-          <div className="h-2 w-2/3 rounded-full bg-primary/25" aria-hidden />
-          <div className="mt-2 h-2 w-5/6 rounded-full bg-primary/15" aria-hidden />
+          <div className="h-2 w-2/3 rounded-full bg-ink-900/25" aria-hidden />
+          <div className="mt-2 h-2 w-5/6 rounded-full bg-ink-900/15" aria-hidden />
           <div className="mt-3 flex gap-1.5">
             <span className="mono-label rounded-xl border border-hairline px-2 py-0.5 text-[9px] text-slate-mid">
               Section 2 of 4

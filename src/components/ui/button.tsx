@@ -14,8 +14,8 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "rounded-pill bg-primary text-white hover:bg-black active:bg-black",
-        inverted: "rounded-pill bg-white text-primary hover:bg-stone-soft active:bg-stone-soft",
+        primary: "rounded-pill bg-ink-900 text-white hover:bg-black active:bg-black",
+        inverted: "rounded-pill bg-white text-ink-900 hover:bg-white/90 active:bg-white/80",
         outline:
           "rounded-pill border border-primary/25 bg-transparent text-primary hover:border-primary",
         "outline-light":

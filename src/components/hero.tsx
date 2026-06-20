@@ -21,7 +21,7 @@ const HeroCanvas = dynamic(() => import("./hero-canvas"), {
 function ConsoleCard() {
   const { console: c } = site.hero;
   return (
-    <div className="absolute bottom-4 left-4 w-[17rem] max-w-[calc(100%-2rem)] rounded-md border border-white/10 bg-primary/95 p-4 text-white">
+    <div className="absolute bottom-4 left-4 w-[17rem] max-w-[calc(100%-2rem)] rounded-md border border-white/10 bg-ink-900/95 p-4 text-white">
       <div className="flex items-center justify-between gap-3">
         <span className="mono-label text-[10px] text-white/60">{c.title}</span>
         <span aria-hidden className="size-1.5 rounded-full bg-coral" />

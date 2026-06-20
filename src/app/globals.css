@@ -1,30 +1,69 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Class-based dark mode: utilities like `dark:hidden` apply inside `.dark`. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ——— Runtime, themeable color variables ——— */
+:root {
+  color-scheme: light;
+  --canvas: #ffffff;
+  --ink: #212121;
+  --primary: #17171c;
+  --stone-soft: #eeece7;
+  --wash-green: #edfce9;
+  --wash-blue: #f1f5ff;
+  --card: #ffffff;
+  --card-line: #f2f2f2;
+  --hairline: #d9d9dd;
+  --line-light: #e5e7eb;
+  --muted-slate: #93939f;
+  --slate-mid: #6c6c80;
+  --focus: #4c6ee6;
+}
+
+.dark {
+  color-scheme: dark;
+  --canvas: #0e1013;
+  --ink: #d8d8dc;
+  --primary: #f3f3f5;
+  --stone-soft: #1b1d22;
+  --wash-green: #11201b;
+  --wash-blue: #121826;
+  --card: #16181d;
+  --card-line: #232429;
+  --hairline: #2a2b30;
+  --line-light: #26272c;
+  --muted-slate: #8a8a96;
+  --slate-mid: #9aa0ad;
+  --focus: #6b8cff;
+}
+
 /* ——— Design tokens, translated from DESIGN.md (Cohere-derived system) ——— */
 @theme inline {
-  /* Brand & accent */
-  --color-canvas: #ffffff;
-  --color-ink: #212121;
-  --color-primary: #17171c;
+  /* Brand & accent (fixed across themes) */
   --color-deep-green: #003c33;
   --color-navy: #071829;
   --color-action: #1863dc;
   --color-coral: #ff7759;
   --color-coral-soft: #ffad9b;
+  /* Fixed near-black surface (footer, primary buttons, scrims, tooltips) */
+  --color-ink-900: #17171c;
 
-  /* Surfaces */
-  --color-stone-soft: #eeece7;
-  --color-wash-green: #edfce9;
-  --color-wash-blue: #f1f5ff;
-  --color-card-line: #f2f2f2;
-
-  /* Text & rules */
-  --color-hairline: #d9d9dd;
-  --color-line-light: #e5e7eb;
-  --color-muted-slate: #93939f;
-  --color-slate-mid: #6c6c80;
-  --color-focus: #4c6ee6;
+  /* Themeable — resolved from the runtime variables above */
+  --color-canvas: var(--canvas);
+  --color-ink: var(--ink);
+  --color-primary: var(--primary);
+  --color-card: var(--card);
+  --color-stone-soft: var(--stone-soft);
+  --color-wash-green: var(--wash-green);
+  --color-wash-blue: var(--wash-blue);
+  --color-card-line: var(--card-line);
+  --color-hairline: var(--hairline);
+  --color-line-light: var(--line-light);
+  --color-muted-slate: var(--muted-slate);
+  --color-slate-mid: var(--slate-mid);
+  --color-focus: var(--focus);
 
   /* Type */
   --font-display: "Space Grotesk Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
@@ -101,5 +140,30 @@
       /* biome-ignore lint/complexity/noImportantStyles: reduced-motion reset must override all animation/transition declarations */
       transition-duration: 0.01ms !important;
     }
+  }
+}
+
+/* ——— Theme toggle: circular reveal via the View Transitions API ———
+ * The default cross-fade is disabled; the new snapshot is clipped from a
+ * growing circle anchored at the toggle (animated in JS via element.animate).
+ * The old snapshot stays beneath so the new theme appears to wipe over it. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    /* biome-ignore lint/complexity/noImportantStyles: must override all view-transition animations under reduced motion */
+    animation: none !important;
   }
 }

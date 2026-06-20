@@ -20,10 +20,10 @@ function SkillKey({ skill }: { skill: Skill }): React.JSX.Element {
         {/* Base / shadow edge of the key */}
         <span
           aria-hidden="true"
-          className="absolute inset-0 translate-y-[7px] rounded-md bg-ink/20"
+          className="absolute inset-0 translate-y-[7px] rounded-md bg-black/30"
         />
         {/* Cap */}
-        <span className="relative flex items-center gap-3 rounded-md border border-ink/15 bg-white px-5 py-3.5 transition-transform duration-150 ease-out group-hover:translate-y-[5px] group-focus-visible:translate-y-[5px] motion-reduce:transition-none">
+        <span className="relative flex items-center gap-3 rounded-md border border-ink/15 bg-card px-5 py-3.5 transition-transform duration-150 ease-out group-hover:translate-y-[5px] group-focus-visible:translate-y-[5px] motion-reduce:transition-none">
           {/* biome-ignore lint/performance/noImgElement: static decorative SVG logo, next/image adds no benefit */}
           <img
             src={skill.icon}

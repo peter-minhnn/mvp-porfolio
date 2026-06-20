@@ -3,7 +3,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { MenuIcon, XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -109,6 +109,7 @@ export function SiteNav() {
 
           {/* CTA (desktop) + menu (mobile) */}
           <div className="flex items-center gap-3 justify-self-end">
+            <ThemeToggle />
             <motion.div
               whileTap={reduced ? undefined : { scale: 0.97 }}
               className="hidden md:block"

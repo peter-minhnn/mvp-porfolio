@@ -6,7 +6,7 @@ import { site } from "@/content/site";
  */
 export function SiteFooter() {
   return (
-    <footer className="bg-primary text-white">
+    <footer className="bg-ink-900 text-white">
       <div className="container-site grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr] md:py-20">
         <div className="flex flex-col items-start gap-5">
           <span className="font-display text-lg tracking-tight">{site.profile.wordmark}</span>
@@ -20,7 +20,7 @@ export function SiteFooter() {
                 {site.profile.email}
               </a>
             </TooltipTrigger>
-            <TooltipContent className="bg-white text-primary">
+            <TooltipContent className="bg-white text-ink-900">
               The fastest way to reach me
             </TooltipContent>
           </Tooltip>
